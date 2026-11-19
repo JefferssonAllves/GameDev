@@ -1,0 +1,8 @@
+# Configuração exclusiva deste repositório; sem credenciais versionadas.
+[mcp_servers.context7]
+url = "https://mcp.context7.com/mcp"
+
+[mcp_servers.godot-mcp]
+command = "uvx"
+args = ["--from", "godot-editor-mcp==2026.10.20.1", "godot-editor-mcp"]
+startup_timeout_sec = 60
