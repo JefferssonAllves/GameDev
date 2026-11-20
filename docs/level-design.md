@@ -35,6 +35,8 @@ A cena `game/wanderer.tscn` usa a folha fornecida em `sprites/aleatoria/mario.pn
 
 O Nerd (`game/reader.tscn`) fica parado à direita da banca com o livro aberto. A animação de leitura inclina levemente a pose em torno dos pés e repete a cada 2,4 s. A folha `sprites/aleatoria/nerd.png` preserva os créditos de seus sprites originais e da edição no cabeçalho.
 
+O Capoeirista (`game/capoeirista.tscn`) demonstra em sequência as 14 fileiras da folha enviada, incluindo guarda, ginga, chutes, rasteiras, acrobacias, quedas e celebração. Ele fica na arena como NPC demonstrador. As poses de ataque ainda não aplicam dano.
+
 ## Teste de regressão
 
 Se o personagem sumir depois de um `git pull`, abra o projeto no editor e espere a importação terminar antes de jogar. Para automatizar a importação de recursos como `inimigo2.png` após atualizações pelo Git, ative os hooks seguindo o [README](../README.md). O PNG vem pelo Git, e o Godot gera a textura em `.godot/imported/` em cada máquina.
