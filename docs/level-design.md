@@ -23,6 +23,11 @@ O jogador usa a folha em `sprites/aleatoria/`, com fundo ocultado pelo material 
 
 ## Teste de regressão
 
+Se o personagem sumir depois de um `git pull`, abra o projeto no editor e espere a importação terminar antes de jogar. Fechar e reabrir o editor força uma nova varredura. O PNG vem pelo Git, e o Godot gera a textura em `.godot/imported/` em cada máquina.
+
+Para importar e testar pelo terminal, execute na raiz do repositório.
+
 ```sh
+godot --headless --editor --path . --import
 godot --headless --path . -s res://tests/movement_test.gd
 ```
