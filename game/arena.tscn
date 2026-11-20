@@ -11,8 +11,6 @@
 
 [ext_resource type="PackedScene" path="res://game/reader.tscn" id="6"]
 
-[ext_resource type="PackedScene" path="res://game/capoeirista.tscn" id="7"]
-
 [sub_resource type="NavigationPolygon" id="Walkable"]
 outlines = Array[PackedVector2Array]([PackedVector2Array(20, 240, 1580, 240, 1580, 500, 20, 500)])
 parsed_geometry_type = 1
@@ -121,11 +119,11 @@ polygon = PackedVector2Array(-52, -64, 52, -64, 39, -91, -39, -91)
 [node name="Player" parent="World" instance=ExtResource("1")]
 position = Vector2(260, 370)
 
-[node name="Enemy" parent="World" node_paths=PackedStringArray("target") instance=ExtResource("3")]
+[node name="Enemy" parent="World" node_paths=PackedStringArray("target") groups=["capoeira_targets"] instance=ExtResource("3")]
 position = Vector2(145, 335)
 target = NodePath("../Player")
 
-[node name="FireEnemy" parent="World" node_paths=PackedStringArray("target") instance=ExtResource("4")]
+[node name="FireEnemy" parent="World" node_paths=PackedStringArray("target") groups=["capoeira_targets"] instance=ExtResource("4")]
 position = Vector2(420, 325)
 target = NodePath("../Player")
 
@@ -134,9 +132,6 @@ position = Vector2(660, 455)
 
 [node name="Reader" parent="World" instance=ExtResource("6")]
 position = Vector2(737, 295)
-
-[node name="Capoeirista" parent="World" instance=ExtResource("7")]
-position = Vector2(335, 300)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("Walkable")
@@ -161,4 +156,4 @@ text = "Feira da Virada"
 offset_left = 28.0
 offset_top = 60.0
 theme_override_font_sizes/font_size = 16
-text = "WASD / setas · Espaço salta · Shift esquiva · R reinicia\nAnalógico ou direcional · A salta · B esquiva · Start reinicia"
+text = "WASD / setas · Espaço salta · Shift esquiva · Ctrl corre · R reinicia\nJ chute · K rasteira · L acrobacia · H comemora"

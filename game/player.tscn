@@ -2,23 +2,7 @@
 
 [ext_resource type="Script" path="res://game/player.gd" id="1"]
 
-[ext_resource type="Texture2D" path="res://sprites/aleatoria/Custom _ Edited - Plok Customs - Plok - Plok (Bubble and Squeak-Style) (1).png" id="2"]
-
-[sub_resource type="Shader" id="SpriteBackground"]
-code = "shader_type canvas_item;
-
-void fragment() {
-	vec4 pixel = COLOR;
-	vec3 rgb = round(pixel.rgb * 255.0);
-	if (rgb == vec3(172.0, 219.0, 229.0) || rgb == vec3(96.0, 141.0, 164.0)) {
-		pixel.a = 0.0;
-	}
-	COLOR = pixel;
-}
-"
-
-[sub_resource type="ShaderMaterial" id="SpriteMaterial"]
-shader = SubResource("SpriteBackground")
+[ext_resource type="PackedScene" path="res://game/capoeirista.tscn" id="2"]
 
 [sub_resource type="RectangleShape2D" id="Feet"]
 size = Vector2(30, 18)
@@ -36,13 +20,4 @@ shape = SubResource("Feet")
 color = Color(0.09, 0.12, 0.14, 0.55)
 polygon = PackedVector2Array(-19, 0, -12, -6, 12, -6, 19, 0, 12, 6, -12, 6)
 
-[node name="Visual" type="Node2D" parent="."]
-
-[node name="Sprite" type="Sprite2D" parent="Visual"]
-texture_filter = 1
-material = SubResource("SpriteMaterial")
-position = Vector2(0, -32.25)
-scale = Vector2(1.5, 1.5)
-texture = ExtResource("2")
-region_enabled = true
-region_rect = Rect2(27, 114, 28, 43)
+[node name="Visual" parent="." instance=ExtResource("2")]

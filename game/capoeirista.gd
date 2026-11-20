@@ -21,9 +21,6 @@ const ROWS := [
 
 @onready var sprite: AnimatedSprite2D = $Sprite
 
-var sequence := 0
-
-
 func _ready() -> void:
 	var frames := SpriteFrames.new()
 	frames.remove_animation(&"default")
@@ -31,7 +28,7 @@ func _ready() -> void:
 		var animation: StringName = row[0]
 		frames.add_animation(animation)
 		frames.set_animation_loop(animation, false)
-		frames.set_animation_speed(animation, 12.0)
+		frames.set_animation_speed(animation, 18.0)
 		var bounds: Array = row[3]
 		for index in range(0, bounds.size(), 2):
 			var texture := AtlasTexture.new()
@@ -41,20 +38,11 @@ func _ready() -> void:
 			frames.add_frame(animation, texture)
 	sprite.sprite_frames = frames
 	sprite.frame_changed.connect(_align_feet)
-	sprite.animation_finished.connect(_next_sequence)
-	_play_sequence()
-
-
-func _next_sequence() -> void:
-	sequence = (sequence + 1) % ROWS.size()
-	_play_sequence()
-
-
-func _play_sequence() -> void:
-	sprite.play(ROWS[sequence][0])
-	_align_feet()
+	sprite.animation_changed.connect(_align_feet)
+	sprite.play(&"guarda_e_avanco")
 
 
 func _align_feet() -> void:
 	var texture := sprite.sprite_frames.get_frame_texture(sprite.animation, sprite.frame)
-	sprite.offset.y = -texture.get_height() / 2.0
+	if texture != null:
+		sprite.offset.y = -texture.get_height() / 2.0

@@ -14,7 +14,7 @@ Atualizado em 2026-11-19. Este índice manual complementa o Project Map; não é
 | `game/player.tscn`, `game/player.gd` | Personagem reutilizável, movimento no chão e colisão dos pés. | Alterações de movimento e apresentação. |
 | `game/enemy.tscn`, `game/enemy.gd` | NPC de patrulha e perseguição pelo piso navegável, animado com `sprites/aleatoria/inimigo.png`. | Ajustes de navegação, detecção e animações do inimigo. |
 | `game/wanderer.tscn`, `game/wanderer.gd`, `tests/wanderer_test.gd` | NPC neutro com destinos aleatórios, pausas e animações. | Ajustes no movimento e visual do NPC errante. |
-| `game/capoeirista.tscn`, `game/capoeirista.gd` | NPC demonstrador com as sequências do atlas de capoeira. | Ajustes de poses e reprodução. |
+| `game/capoeirista.tscn`, `game/capoeirista.gd` | Visual do jogador com as sequências do atlas de capoeira. | Ajustes de poses e reprodução. |
 | `game/reader.tscn` | NPC parado com livro aberto e animação de leitura. | Ajustes de posição e animação do leitor. |
 | `tests/enemy_test.gd` | Teste de patrulha, perseguição em torno da banca e animações. | Alterações no NPC ou na navegação da arena. |
 | `game/fire_enemy.tscn`, `game/fire_enemy.gd`, `game/fireball.gd` | Segundo NPC e projétil de fogo. | Ajustes de ataque à distância. |
