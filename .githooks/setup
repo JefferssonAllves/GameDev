@@ -1,0 +1,15 @@
+#!/bin/sh
+set -eu
+
+root=$(git rev-parse --show-toplevel)
+current=$(git config --get core.hooksPath || true)
+case "$current" in
+    ''|.githooks) ;;
+    *)
+        printf 'core.hooksPath já usa %s. Preserve seus hooks ao integrar .githooks.\n' "$current" >&2
+        exit 1
+        ;;
+esac
+
+git config --local core.hooksPath .githooks
+exec sh "$root/.githooks/import-godot"

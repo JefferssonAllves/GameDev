@@ -1,10 +1,10 @@
 {
   "analyzer": "0.3.0",
-  "generated_at": "2026-11-20T00:41:06+00:00",
-  "git_commit": "7bbc1c038e9e3bf398922d6fa19bceedb6ec9b60",
-  "source_fingerprint": "e556a4241eb47cfdbfbe33e68c0700ec0e8a88e5bdb5a6ebe0ef61bc49a37ed3",
+  "generated_at": "2026-11-20T01:43:38+00:00",
+  "git_commit": "d478a5762571489fe174e9d8c6d0932065c874fa",
+  "source_fingerprint": "d79366c467c46605cec9873c5347608f7a2333c68f4987c9b50adad276f9860e",
   "project_versions": {},
-  "project": "GameDev",
+  "project": "gamedev-skills.XonEsy",
   "files": {
     ".agents/scripts/project_map.py": {
       "sha256": "4fc54dc9c04d2ceff5a507976f899bcde7d1307d42f7f33e7670743dc60e0419",
@@ -1050,6 +1050,46 @@
           "doc": ""
         }
       ],
+      "parse_error": null
+    },
+    ".githooks/import-godot": {
+      "sha256": "98dfe8a3cf4db3783df4b4fe273d307b21a8ae0cba83523f84271cc31891234d",
+      "size": 465,
+      "language": "shell",
+      "imports": [
+        "$engine"
+      ],
+      "symbols": [],
+      "parse_error": null
+    },
+    ".githooks/post-merge": {
+      "sha256": "e22b06032f55e991dc29e1799a62504d9cb6c5e18aec7a241b0180be97e1327d",
+      "size": 85,
+      "language": "shell",
+      "imports": [
+        "$(git rev-parse --show-toplevel)/.githooks/import-godot"
+      ],
+      "symbols": [],
+      "parse_error": null
+    },
+    ".githooks/post-rewrite": {
+      "sha256": "7c7f832b5d755b38043e854dcc9ea2ea1ea009dd2a80ef26f4d0e1ff4544c21c",
+      "size": 142,
+      "language": "shell",
+      "imports": [
+        "$(git rev-parse --show-toplevel)/.githooks/import-godot"
+      ],
+      "symbols": [],
+      "parse_error": null
+    },
+    ".githooks/setup": {
+      "sha256": "07c1c541ce39b928806442def7e734c337765489136ec977a8741a1d90a04ed6",
+      "size": 374,
+      "language": "shell",
+      "imports": [
+        "$root/.githooks/import-godot"
+      ],
+      "symbols": [],
       "parse_error": null
     }
   }

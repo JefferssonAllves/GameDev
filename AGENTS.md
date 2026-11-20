@@ -17,6 +17,14 @@ O catálogo completo é extenso por solicitação do usuário. `.codex/config.to
 - No início de cada tarefa neste repositório, executar `git pull --ff-only` na branch atual antes de explorar ou editar arquivos. Se o pull falhar, informar o motivo e preservar as alterações locais. Resolver divergências de histórico somente com orientação do usuário.
 - Ao concluir e verificar uma atualização do repositório, fazer commit das alterações da tarefa e enviar a branch atual ao GitHub com `git push`. Escrever as mensagens de commit em português brasileiro. Quando a tarefa incluir um pull request, escrever também seu título e sua descrição em português brasileiro. Manter alterações locais alheias à tarefa fora do commit e informar qualquer falha no envio.
 
+## Compartilhamento de imagens, sprites e animações
+
+- Na primeira tarefa em cada clone, logo após o pull inicial, confira `git config --get core.hooksPath`. Se o valor estiver vazio e `.githooks/setup` existir na branch, execute `sh .githooks/setup` na raiz. Isso importa os recursos atuais e ativa a importação automática após pulls que atualizem a branch. Se houver outro caminho de hooks, preserve-o e execute `sh .githooks/import-godot` após o pull.
+- Use o Godot da versão indicada pelo projeto, disponível no PATH como `godot` ou `godot4`. No Windows, use o Git Bash. Se o hook produzir erro ou o Godot indicar que uma textura importada está ausente, execute `sh .githooks/import-godot` e confira a saída antes de rodar o jogo. Um pull bem-sucedido por si só não confirma que a importação terminou.
+- Toda alteração em imagens, sprites ou animações deve funcionar para outra pessoa após um `git pull` da branch, usando a versão do Godot indicada pelo projeto. Inclua no mesmo commit os arquivos-fonte e todas as cenas, recursos, scripts e metadados de importação necessários, como `.import` e `.uid` quando aplicáveis.
+- Use referências `res://` com caminhos e capitalização iguais aos arquivos versionados. Confira se o Git inclui cada dependência. O Godot deve regenerar o cache `.godot/` pela importação automática. A execução não deve depender de cópias manuais, arquivos externos, caminhos da máquina de quem fez a alteração ou cache prévio.
+- Antes de enviar, valide em um checkout limpo com apenas os arquivos que serão compartilhados. Deixe o Godot importar os recursos e execute a cena afetada. Confira se a arte aparece e se as animações alteradas funcionam. Informe qualquer parte que não pôde ser verificada.
+
 ## Contexto das mecânicas do jogo
 
 - Toda tarefa relacionada a uma mecânica do jogo deve atualizar pelo menos um arquivo de contexto do projeto antes de ser concluída. Isso vale para propostas, implementações, ajustes, correções e investigações, mesmo sem alteração de código ou arquivo dedicado à mecânica.
