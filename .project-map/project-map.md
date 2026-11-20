@@ -1,66 +1,64 @@
 # Project Map
 
-<!-- project-map: {"analyzer": "0.3.0", "generated_at": "2026-11-20T01:37:06+00:00", "git_commit": "0ab1aab4f33244d2672169d79af9a3ec68b651ae", "source_fingerprint": "e556a4241eb47cfdbfbe33e68c0700ec0e8a88e5bdb5a6ebe0ef61bc49a37ed3"} -->
+<!-- project-map: {"analyzer": "0.3.0", "generated_at": "2026-11-20T01:39:21+00:00", "git_commit": "d0f4151d3fa82029245cf8c23ecc3d69919d312d", "source_fingerprint": "d79366c467c46605cec9873c5347608f7a2333c68f4987c9b50adad276f9860e"} -->
 This is a generated navigation index. Validate it before relying on it; read source files before editing. FRESH means the indexed files match, not that every repository file is covered.
 
 ## Snapshot
 
 - Analyzer: `0.3.0`
-- Generated (UTC): `2026-11-20T01:37:06+00:00`
-- Git commit: `0ab1aab4f33244d2672169d79af9a3ec68b651ae`
-- Source fingerprint: `e556a4241eb47cfdbfbe33e68c0700ec0e8a88e5bdb5a6ebe0ef61bc49a37ed3`
-- Indexed files: `14`
+- Generated (UTC): `2026-11-20T01:39:21+00:00`
+- Git commit: `d0f4151d3fa82029245cf8c23ecc3d69919d312d`
+- Source fingerprint: `d79366c467c46605cec9873c5347608f7a2333c68f4987c9b50adad276f9860e`
+- Indexed files: `18`
 - Declared project versions: `none detected`
 - Source hashes and analysis cache: `.project-map/project-map.manifest.json`
 
 ## Coverage
 
-- Indexed languages in this map: `javascript: 3`, `python: 1`, `shell: 9`, `typescript: 1`
+- Indexed languages in this map: `javascript: 3`, `python: 1`, `shell: 13`, `typescript: 1`
 - Discoverable source types: Python (`.py`, `.pyi`); JavaScript/TypeScript (`.js`, `.jsx`, `.mjs`, `.cjs`, `.ts`, `.tsx`); Shell (`.sh`, `.bash`, `.zsh`, `.fish`, and extensionless shell shebang files); systemd (`.service`, `.socket`, `.timer`, `.target`, `.mount`, `.path`).
 - Selected project files: `pyproject.toml`, `setup.py`, `setup.cfg`, `requirements.txt`, `package.json`, `tsconfig.json`, `Cargo.toml`, `manage.py`, `Dockerfile`, `Makefile`, Compose files, `CMakeLists.txt`, Go modules, Maven/Gradle files, and `Procfile`.
 - Freshness scope: only files listed in this map and manifest. Unlisted repository files are not validated.
 - Parsing scope: Python uses the standard-library AST; JavaScript/TypeScript, Shell, and systemd relationships are conservative and may be incomplete.
 
-## Changes Since Previous Map
-
-- Previous Git commit: `6ac7456e7766d441622fa91a4c2d95fffa805806`
-- Current Git commit: `0ab1aab4f33244d2672169d79af9a3ec68b651ae`
-- Added: none
-- Changed: none
-- Removed: none
-
 ## Components
 
 - `.agents`: project component; 14 indexed file(s); javascript, python, shell, typescript
+- `.githooks`: project component; 4 indexed file(s); shell
 
 ## Repository Tree
 
 ```text
-└── .agents/
-    ├── scripts/
-    │   └── project_map.py [python, 38876 bytes]
-    └── skills/
-        ├── brainstorming/
-        │   └── scripts/
-        │       ├── helper.js [javascript, 5615 bytes]
-        │       ├── server.cjs [javascript, 25699 bytes]
-        │       ├── start-server.sh [shell, 7315 bytes]
-        │       └── stop-server.sh [shell, 3263 bytes]
-        ├── executing-plans/
-        │   └── scripts/
-        │       ├── task-done [shell, 1900 bytes]
-        │       └── task-start [shell, 1185 bytes]
-        ├── subagent-driven-development/
-        │   └── scripts/
-        │       ├── review-package [shell, 2444 bytes]
-        │       ├── sdd-repo [shell, 2356 bytes]
-        │       ├── sdd-workspace [shell, 4823 bytes]
-        │       └── task-brief [shell, 4769 bytes]
-        ├── systematic-debugging/
-        │   ├── condition-based-waiting-example.ts [typescript, 5054 bytes]
-        │   └── find-polluter.sh [shell, 1986 bytes]
-        └── writing-skills/
-            └── render-graphs.js [javascript, 4968 bytes]
+├── .agents/
+│   ├── scripts/
+│   │   └── project_map.py [python, 38876 bytes]
+│   └── skills/
+│       ├── brainstorming/
+│       │   └── scripts/
+│       │       ├── helper.js [javascript, 5615 bytes]
+│       │       ├── server.cjs [javascript, 25699 bytes]
+│       │       ├── start-server.sh [shell, 7315 bytes]
+│       │       └── stop-server.sh [shell, 3263 bytes]
+│       ├── executing-plans/
+│       │   └── scripts/
+│       │       ├── task-done [shell, 1900 bytes]
+│       │       └── task-start [shell, 1185 bytes]
+│       ├── subagent-driven-development/
+│       │   └── scripts/
+│       │       ├── review-package [shell, 2444 bytes]
+│       │       ├── sdd-repo [shell, 2356 bytes]
+│       │       ├── sdd-workspace [shell, 4823 bytes]
+│       │       └── task-brief [shell, 4769 bytes]
+│       ├── systematic-debugging/
+│       │   ├── condition-based-waiting-example.ts [typescript, 5054 bytes]
+│       │   └── find-polluter.sh [shell, 1986 bytes]
+│       └── writing-skills/
+│           └── render-graphs.js [javascript, 4968 bytes]
+└── .githooks/
+    ├── import-godot [shell, 465 bytes]
+    ├── post-merge [shell, 85 bytes]
+    ├── post-rewrite [shell, 142 bytes]
+    └── setup [shell, 374 bytes]
 ```
 
 ## Entry Points
@@ -71,6 +69,9 @@ This is a generated navigation index. Validate it before relying on it; read sou
 
 - `.agents/skills/executing-plans/scripts/task-done` -> `.agents/skills/subagent-driven-development/scripts/sdd-workspace`
 - `.agents/skills/executing-plans/scripts/task-start` -> `.agents/skills/subagent-driven-development/scripts/task-brief`
+- `.githooks/post-merge` -> `.githooks/import-godot`
+- `.githooks/post-rewrite` -> `.githooks/import-godot`
+- `.githooks/setup` -> `.githooks/import-godot`
 
 ## Dependency Trees
 
@@ -79,10 +80,17 @@ This is a generated navigation index. Validate it before relying on it; read sou
 └── .agents/skills/subagent-driven-development/scripts/sdd-workspace
 .agents/skills/executing-plans/scripts/task-start
 └── .agents/skills/subagent-driven-development/scripts/task-brief
+.githooks/post-merge
+└── .githooks/import-godot
+.githooks/post-rewrite
+└── .githooks/import-godot
+.githooks/setup
+└── .githooks/import-godot
 ```
 
 ## Change Hotspots
 
+- `.githooks/import-godot`: imported by 3 indexed module(s)
 - `.agents/skills/subagent-driven-development/scripts/sdd-workspace`: imported by 1 indexed module(s)
 - `.agents/skills/subagent-driven-development/scripts/task-brief`: imported by 1 indexed module(s)
 

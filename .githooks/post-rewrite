@@ -1,0 +1,7 @@
+#!/bin/sh
+set -eu
+
+if [ "${1:-}" = rebase ]; then
+    cat >/dev/null
+    exec sh "$(git rev-parse --show-toplevel)/.githooks/import-godot"
+fi

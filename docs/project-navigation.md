@@ -29,6 +29,7 @@ Atualizado em 2026-11-19. Este índice manual complementa o Project Map; não é
 | `.agents/scripts/project_map.py` | Project Map 0.3.0, analisador original em Python. | Executar `check`, `map` e `update`; não implementar um segundo gerador. |
 | `.agents/licenses/` | Licenças e avisos dos pacotes locais. | Redistribuição ou atualização das skills. |
 | `.codex/config.toml` | Configuração deste projeto para o Codex e servidores Context7/Godot MCP. | Problemas de descoberta ou conexão das ferramentas. |
+| `.githooks/` | Importa recursos Godot após atualizações Git usando hooks ativados por clone. | Diagnóstico de sprites ou texturas ausentes após pull. |
 | `.editorconfig`, `.gitattributes`, `.gitignore` | Formatação, atributos Git e exclusões. | Mudanças de convenção ou inclusão de novos tipos de arquivo. |
 
 ## Estado do jogo
