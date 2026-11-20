@@ -63,7 +63,7 @@ func _physics_process(delta: float) -> void:
 	visual.position.y = -jump_height
 	visual.scale.x = facing
 	move_and_slide()
-	_update_sprite(running)
+	_update_sprite()
 
 
 func _read_move_inputs(running: bool) -> void:
@@ -87,7 +87,7 @@ func _start_move(clip: StringName, strikes: bool) -> void:
 	sprite.set_frame_and_progress(0, 0.0)
 
 
-func _update_sprite(running: bool) -> void:
+func _update_sprite() -> void:
 	if move_clip != &"":
 		if strike_pending and sprite.frame >= sprite.sprite_frames.get_frame_count(move_clip) / 2:
 			strike_pending = false
@@ -108,21 +108,10 @@ func _update_sprite(running: bool) -> void:
 		sprite.frame = clampi(roundi((1.0 - dash_remaining / dash_duration) * last), 0, last)
 	else:
 		var speed := get_real_velocity().length()
-		var clip: StringName = &"correr" if running and speed > ground_speed else &"ginga"
-		var cadence := clampf(speed / (ground_speed * 1.45), 0.75, 1.15)
-		if clip == &"ginga":
-			cadence = lerpf(0.65, 1.25, clampf(speed / ground_speed, 0.0, 1.0))
-			if speed <= 1.0 and Input.is_action_pressed("celebrate"):
-				cadence = 1.25
+		var clip: StringName = &"correr" if speed > 1.0 else &"repouso"
 		if sprite.animation != clip or not sprite.is_playing():
-			var phase := 0.0
-			if sprite.animation in [&"ginga", &"correr"]:
-				var previous_count := sprite.sprite_frames.get_frame_count(sprite.animation)
-				phase = (sprite.frame + sprite.frame_progress) / previous_count
 			sprite.play(clip)
-			var frame := phase * sprite.sprite_frames.get_frame_count(clip)
-			sprite.set_frame_and_progress(int(frame), fposmod(frame, 1.0))
-		sprite.speed_scale = cadence
+		sprite.speed_scale = clampf(speed / (ground_speed * 1.45), 0.65, 1.15) if clip == &"correr" else 1.0
 
 
 func _strike() -> void:
@@ -145,7 +134,7 @@ func _reset() -> void:
 	move_clip = &""
 	strike_pending = false
 	sprite.speed_scale = 1.0
-	sprite.play(&"ginga")
+	sprite.play(&"repouso")
 	sprite.set_frame_and_progress(0, 0.0)
 	reset_physics_interpolation()
 

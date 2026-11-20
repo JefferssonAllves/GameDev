@@ -23,15 +23,15 @@ func _run() -> void:
 	var sprite := player.get_node("Visual/Sprite") as AnimatedSprite2D
 	var idle_frame := sprite.frame
 	await _ticks(15)
-	_check(sprite.animation == &"ginga" and sprite.frame != idle_frame and player.position == spawn,
-		"Ginga contínua em repouso sem deslocamento")
+	_check(sprite.animation == &"repouso" and sprite.frame != idle_frame and player.position == spawn,
+		"Fileira de repouso animada sem deslocamento")
 
 	Input.action_press("move_right")
 	Input.action_press("move_down")
 	await _ticks(20)
 	_check(player.position.x > spawn.x and player.position.y > spawn.y, "Movimento diagonal")
 	_check(is_equal_approx(player.velocity.length(), 240.0), "Diagonal normalizada")
-	_check(sprite.animation == &"ginga", "Movimento usa os quadros de caminhada")
+	_check(sprite.animation == &"correr", "Movimento normal usa a fileira de corrida")
 	var walk_frame := sprite.frame
 	await _ticks(8)
 	_check(sprite.frame != walk_frame, "Caminhada alterna quadros")
@@ -65,7 +65,7 @@ func _run() -> void:
 	await _ticks(2)
 	Input.action_release("reset_arena")
 	_check(player.position.is_equal_approx(spawn), "Reinício restaura a posição")
-	_check(sprite.animation == &"ginga", "Reinício restaura a pose de repouso")
+	_check(sprite.animation == &"repouso", "Reinício restaura a pose de repouso")
 	Input.action_press("dash")
 	await _ticks(4)
 	_check(player.position.x > spawn.x + 22, "Esquiva acelera na direção do personagem")

@@ -156,4 +156,4 @@ text = "Feira da Virada"
 offset_left = 28.0
 offset_top = 60.0
 theme_override_font_sizes/font_size = 16
-text = "WASD / setas · Espaço salta · Shift esquiva · Ctrl corre · R reinicia\nJ chute · K queixada · L acrobacia · H ginga"
+text = "WASD / setas · Espaço salta · Shift esquiva · Ctrl corre · R reinicia\nJ chute · K queixada · L acrobacia"

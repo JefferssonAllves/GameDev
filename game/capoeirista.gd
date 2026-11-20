@@ -2,12 +2,12 @@ extends Node2D
 
 const SHEET = preload("res://sprites/aleatoria/Sprite Sheet de Capoeira em Pixel Art.webp")
 # Cada fileira usa limites horizontais próprios para não capturar os rótulos.
-const GINGA := [178, 298, 426, 555, 683, 820, 944, 1059, 1188, 1304, 1430, 1550, 1676, 1800, 1919, 2040, 2157]
+const REPOUSO := [202, 327, 454, 582, 706, 835, 964, 1091, 1197]
 const CORRIDA := [213, 360, 523, 680, 840, 1018, 1188, 1337, 1475]
 const ATAQUES := [187, 286, 394, 521, 640, 721, 802, 898, 1025, 1133, 1240, 1355, 1483, 1608, 1702, 1825, 1969, 2079, 2157]
 const SALTO := [217, 351, 506, 667, 822, 960, 1118, 1276, 1426, 1520]
 var rows := [
-	[&"ginga", 161, 118, GINGA, true, 12.0],
+	[&"repouso", 0, 146, REPOUSO, true, 8.0],
 	[&"correr", 298, 109, CORRIDA, true, 17.0],
 	[&"pular", 578, 130, SALTO, false, 18.0],
 	[&"meia_lua", 422, 128, ATAQUES.slice(0, 6), false, 10.0],
@@ -40,7 +40,7 @@ func _ready() -> void:
 	sprite.sprite_frames = frames
 	sprite.frame_changed.connect(_align_feet)
 	sprite.animation_changed.connect(_align_feet)
-	sprite.play(&"ginga")
+	sprite.play(&"repouso")
 
 
 func _align_feet() -> void:
