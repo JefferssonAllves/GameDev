@@ -3,6 +3,15 @@
 [ext_resource type="PackedScene" path="res://game/player.tscn" id="1"]
 [ext_resource type="Script" path="res://game/arena.gd" id="2"]
 
+[ext_resource type="PackedScene" path="res://game/enemy.tscn" id="3"]
+
+[sub_resource type="NavigationPolygon" id="Walkable"]
+outlines = Array[PackedVector2Array]([PackedVector2Array(20, 240, 1580, 240, 1580, 500, 20, 500)])
+parsed_geometry_type = 1
+source_geometry_mode = 2
+source_geometry_group_name = &"navigation_obstacles"
+agent_radius = 18.0
+
 [node name="Arena" type="Node2D"]
 script = ExtResource("2")
 
@@ -67,7 +76,7 @@ collision_mask = 0
 [node name="Colisao" type="CollisionPolygon2D" parent="World/Leste"]
 polygon = PackedVector2Array(-10, -130, 10, -130, 10, 130, -10, 130)
 
-[node name="Banca" type="StaticBody2D" parent="World"]
+[node name="Banca" type="StaticBody2D" parent="World" groups=["navigation_obstacles"]]
 position = Vector2(520, 402)
 collision_mask = 0
 
@@ -84,7 +93,7 @@ polygon = PackedVector2Array(-60, -56, 60, -56, 60, 0, -60, 0)
 color = Color(0.79, 0.62, 0.40, 1)
 polygon = PackedVector2Array(-60, -56, 60, -56, 47, -83, -47, -83)
 
-[node name="Caixote" type="StaticBody2D" parent="World"]
+[node name="Caixote" type="StaticBody2D" parent="World" groups=["navigation_obstacles"]]
 position = Vector2(1040, 444)
 collision_mask = 0
 
@@ -103,6 +112,13 @@ polygon = PackedVector2Array(-52, -64, 52, -64, 39, -91, -39, -91)
 
 [node name="Player" parent="World" instance=ExtResource("1")]
 position = Vector2(260, 370)
+
+[node name="Enemy" parent="World" node_paths=PackedStringArray("target") instance=ExtResource("3")]
+position = Vector2(680, 370)
+target = NodePath("../Player")
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("Walkable")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(480, 270)

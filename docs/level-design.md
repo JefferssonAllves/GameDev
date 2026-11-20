@@ -21,6 +21,12 @@ A banca e o caixote demonstram a separação. É possível ocultar ou trocar seu
 
 O jogador usa a folha em `sprites/aleatoria/`, com fundo ocultado pelo material da cena. Em solo, a pose alterna entre repouso e cinco quadros de caminhada conforme o deslocamento real. No ar, a subida e a descida têm poses distintas. O nó `Visual` controla a altura e o espelhamento, enquanto a colisão continua nos pés.
 
+## NPC de teste
+
+A cena `game/enemy.tscn` usa `sprites/aleatoria/inimigo.png` para repouso e caminhada. O NPC patrulha entre a posição inicial e o deslocamento `patrol_offset`. Ao detectar o jogador, segue um caminho pelo piso e para a cerca de 36 px. Ao perder o alvo de vista por distância, retorna à patrulha. A perseguição serve para testar movimento e ainda não aplica dano.
+
+Para adicionar outro inimigo, instancie a cena diretamente sob `World`, informe o jogador em `target` e escolha um ponto de patrulha dentro da área navegável. Ao redesenhar o piso, ajuste o contorno do `NavigationPolygon` da raiz. Adicione os `StaticBody2D` que bloqueiam passagens ao grupo `navigation_obstacles`. A arena gera a malha a partir desse contorno e das colisões do grupo ao iniciar.
+
 ## Teste de regressão
 
 Se o personagem sumir depois de um `git pull`, abra o projeto no editor e espere a importação terminar antes de jogar. Fechar e reabrir o editor força uma nova varredura. O PNG vem pelo Git, e o Godot gera a textura em `.godot/imported/` em cada máquina.
@@ -30,4 +36,5 @@ Para importar e testar pelo terminal, execute na raiz do repositório.
 ```sh
 godot --headless --editor --path . --import
 godot --headless --path . -s res://tests/movement_test.gd
+godot --headless --path . -s res://tests/enemy_test.gd
 ```

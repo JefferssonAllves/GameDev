@@ -4,5 +4,9 @@ extends Node2D
 @onready var camera: Camera2D = $Camera2D
 
 
+func _ready() -> void:
+	$NavigationRegion2D.bake_navigation_polygon(false)
+
+
 func _process(_delta: float) -> void:
 	camera.position.x = player.position.x

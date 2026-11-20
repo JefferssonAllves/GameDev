@@ -12,6 +12,8 @@ Atualizado em 2026-11-19. Este índice manual complementa o Project Map; não é
 | `project.godot` | Configuração atual do projeto: cena principal, ações de entrada, camadas de colisão, renderizador Compatibility e plugin do editor. | Antes de alterar configuração ou diagnosticar compatibilidade; a versão declarada não comprova a versão do editor instalado. |
 | `game/arena.tscn`, `game/arena.gd` | Arena de teste, blocos de colisão e câmera lateral. | Montagem e teste de fases. |
 | `game/player.tscn`, `game/player.gd` | Personagem reutilizável, movimento no chão e colisão dos pés. | Alterações de movimento e apresentação. |
+| `game/enemy.tscn`, `game/enemy.gd` | NPC de patrulha e perseguição pelo piso navegável, animado com `sprites/aleatoria/inimigo.png`. | Ajustes de navegação, detecção e animações do inimigo. |
+| `tests/enemy_test.gd` | Teste de patrulha, perseguição em torno da banca e animações. | Alterações no NPC ou na navegação da arena. |
 | `tests/movement_test.gd` | Teste automatizado da arena e do personagem. | Ajustes de física, ação e colisão. |
 | `addons/godot_mcp/` | Addon do Godot Editor MCP 2026.10.20.1, com licença. | Integração com Codex e playtest. |
 | `docs/level-design.md` | Guia para montar colisões e preencher a arte da fase. | Autoria de fases no editor. |
