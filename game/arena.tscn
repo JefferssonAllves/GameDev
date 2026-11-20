@@ -114,7 +114,7 @@ polygon = PackedVector2Array(-52, -64, 52, -64, 39, -91, -39, -91)
 position = Vector2(260, 370)
 
 [node name="Enemy" parent="World" node_paths=PackedStringArray("target") instance=ExtResource("3")]
-position = Vector2(680, 370)
+position = Vector2(145, 335)
 target = NodePath("../Player")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]

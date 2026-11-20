@@ -25,6 +25,8 @@ O jogador usa a folha em `sprites/aleatoria/`, com fundo ocultado pelo material 
 
 A cena `game/enemy.tscn` usa `sprites/aleatoria/inimigo.png` para repouso e caminhada. O NPC patrulha entre a posição inicial e o deslocamento `patrol_offset`. Ao detectar o jogador, segue um caminho pelo piso e para a cerca de 36 px. Ao perder o alvo de vista por distância, retorna à patrulha. A perseguição serve para testar movimento e ainda não aplica dano.
 
+A arena começa com um NPC próximo ao jogador, à esquerda e mais ao fundo, longe da banca. Use **F5** para abrir a cena principal. **F6** executa a cena selecionada, então selecione `game/arena.tscn` para ver jogador e inimigo juntos.
+
 Para adicionar outro inimigo, instancie a cena diretamente sob `World`, informe o jogador em `target` e escolha um ponto de patrulha dentro da área navegável. Ao redesenhar o piso, ajuste o contorno do `NavigationPolygon` da raiz. Adicione os `StaticBody2D` que bloqueiam passagens ao grupo `navigation_obstacles`. A arena gera a malha a partir desse contorno e das colisões do grupo ao iniciar.
 
 ## Teste de regressão

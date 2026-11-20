@@ -5,14 +5,21 @@ func _initialize() -> void:
 
 func _run() -> void:
 	var arena := (load("res://game/arena.tscn") as PackedScene).instantiate()
-	root.add_child(arena)
 	var npc := arena.get_node_or_null("World/Enemy") as CharacterBody2D
 	if npc == null:
 		push_error("O inimigo precisa estar na arena.")
 		quit(1)
 		return
-	await _ticks(3)
 	var player := arena.get_node("World/Player") as CharacterBody2D
+	if npc.position.distance_to(player.position) > 160.0 or npc.position.y >= player.position.y:
+		push_error("O inimigo deve começar próximo e atrás do jogador.")
+		arena.free()
+		quit(1)
+		return
+	# Mantém o cenário de regressão com a banca entre o inimigo e o alvo.
+	npc.position = Vector2(680, 370)
+	root.add_child(arena)
+	await _ticks(3)
 	var sprite := npc.get_node("Sprite") as AnimatedSprite2D
 	var start := npc.position
 	await _ticks(30)
