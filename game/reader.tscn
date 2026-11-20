@@ -1,0 +1,57 @@
+[gd_scene format=3]
+
+[ext_resource type="Texture2D" path="res://sprites/aleatoria/nerd.png" id="1"]
+
+[sub_resource type="Shader" id="SpriteBackground"]
+code = "shader_type canvas_item;
+
+void fragment() {
+	if (round(COLOR.rgb * 255.0) == vec3(152.0, 178.0, 225.0)) {
+		COLOR.a = 0.0;
+	}
+}
+"
+
+[sub_resource type="ShaderMaterial" id="SpriteMaterial"]
+shader = SubResource("SpriteBackground")
+
+[sub_resource type="Animation" id="Reading"]
+resource_name = "reading"
+length = 2.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pose:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8, 1.65, 2.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.035, -0.022, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="Animations"]
+_data = {&"reading": SubResource("Reading")}
+
+[node name="Reader" type="Node2D"]
+
+[node name="Shadow" type="Polygon2D" parent="."]
+color = Color(0.09, 0.12, 0.14, 0.55)
+polygon = PackedVector2Array(-13, 0, -8, -4, 8, -4, 13, 0, 8, 4, -8, 4)
+
+[node name="Pose" type="Node2D" parent="."]
+
+[node name="Sprite" type="Sprite2D" parent="Pose"]
+texture_filter = 1
+material = SubResource("SpriteMaterial")
+position = Vector2(8, -30)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("1")
+region_enabled = true
+region_rect = Rect2(466, 98, 38, 40)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {&"": SubResource("Animations")}
+autoplay = "reading"

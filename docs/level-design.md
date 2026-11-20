@@ -33,6 +33,8 @@ O segundo NPC usa a folha `sprites/aleatoria/inimigo2.png`. Ele detecta o jogado
 
 A cena `game/wanderer.tscn` usa a folha fornecida em `sprites/aleatoria/mario.png` para repouso e caminhada. É um NPC neutro que escolhe destinos aleatórios na malha da arena e faz uma pausa ao chegar. Ele contorna os obstáculos e muda o lado do sprite conforme anda. Instancie sob `World` e ajuste `walk_speed` e `pause_duration` no Inspetor.
 
+O Nerd (`game/reader.tscn`) fica parado à direita da banca com o livro aberto. A animação de leitura inclina levemente a pose em torno dos pés e repete a cada 2,4 s. A folha `sprites/aleatoria/nerd.png` preserva os créditos de seus sprites originais e da edição no cabeçalho.
+
 ## Teste de regressão
 
 Se o personagem sumir depois de um `git pull`, abra o projeto no editor e espere a importação terminar antes de jogar. Para automatizar a importação de recursos como `inimigo2.png` após atualizações pelo Git, ative os hooks seguindo o [README](../README.md). O PNG vem pelo Git, e o Godot gera a textura em `.godot/imported/` em cada máquina.
