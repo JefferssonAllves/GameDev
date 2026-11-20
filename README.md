@@ -9,10 +9,10 @@ Beat ’em up 2D de fantasia brasileira. O [documento de design](docs/brasil-em-
 3. Abra a raiz do repositório em uma nova sessão do Codex e marque o projeto como confiável se solicitado. As habilidades são lidas de `.agents/skills/` e o servidor Godot Editor MCP é configurado em `.codex/config.toml`.
 4. Confira com `codex mcp list` se `godot-mcp` está habilitado. Com o projeto Godot aberto e o plugin ativo, peça ao Codex para executar `godot_health_check` e conferir se a conexão com o editor está ativa.
 
-## Integração prevista para o primeiro protótipo
+## Arena de teste
 
-Ao criar o `project.godot`, incluir no Git o addon da mesma versão do servidor configurado no Codex, com a licença correspondente, e registrá-lo como ativo nas configurações do projeto. Assim, quem clonar o repositório recebe as habilidades, a configuração do servidor e o addon juntos.
+Abra `project.godot` e execute o projeto com **F6** na cena da arena ou **F5** para iniciar a cena principal. O [guia de level design](docs/level-design.md) tem os controles, o teste automatizado e as instruções para montar colisões antes da arte.
 
-A entrega inclui testar a conexão local, inspecionar uma cena e capturar uma imagem do jogo rodando. Até o projeto Godot existir, a verificação disponível é a inicialização do servidor MCP.
+O addon do Godot Editor MCP 2026.10.20.1 está versionado em `addons/godot_mcp/`, com a licença, e habilitado no projeto. Se a conexão falhar com a porta 9080 em uso, confira se outra sessão do Codex já está executando o servidor do Godot.
 
 Veja a [origem das habilidades e os requisitos dos servidores](.agents/README.md).

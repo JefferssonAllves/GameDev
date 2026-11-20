@@ -1,0 +1,33 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://game/player.gd" id="1"]
+
+[sub_resource type="RectangleShape2D" id="Feet"]
+size = Vector2(30, 18)
+
+[node name="Player" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 1
+motion_mode = 1
+script = ExtResource("1")
+
+[node name="Feet" type="CollisionShape2D" parent="."]
+shape = SubResource("Feet")
+
+[node name="Shadow" type="Polygon2D" parent="."]
+color = Color(0.09, 0.12, 0.14, 0.55)
+polygon = PackedVector2Array(-19, 0, -12, -6, 12, -6, 19, 0, 12, 6, -12, 6)
+
+[node name="Visual" type="Node2D" parent="."]
+
+[node name="Body" type="Polygon2D" parent="Visual"]
+color = Color(0.15, 0.61, 0.60, 1)
+polygon = PackedVector2Array(-15, -34, 10, -34, 16, -14, 10, -3, 3, -3, 1, -13, -6, -13, -8, -3, -15, -3)
+
+[node name="Head" type="Polygon2D" parent="Visual"]
+color = Color(0.99, 0.72, 0.37, 1)
+polygon = PackedVector2Array(-11, -36, -13, -51, -5, -58, 9, -56, 16, -46, 12, -37)
+
+[node name="Facing" type="Polygon2D" parent="Visual"]
+color = Color(0.1, 0.16, 0.18, 1)
+polygon = PackedVector2Array(6, -49, 10, -49, 10, -45, 6, -45)

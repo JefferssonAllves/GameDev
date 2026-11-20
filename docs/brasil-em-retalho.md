@@ -96,6 +96,8 @@ No encerramento, a matriz devolve os nomes às barracas. Os resultados mostram t
 
 **Entrega e aceite.** Sala executável onde é possível contornar obstáculos, saltar, esquivar e voltar à posição inicial. A diagonal respeita a velocidade configurada e a ordem visual acompanha os pés.
 
+**Estado do protótipo.** A arena inicial da Feira da Virada implementa deslocamento nos dois eixos do chão, aceleração e desaceleração, orientação, salto visual, esquiva com recuperação, câmera lateral e reinício. O corpo físico fica nos pés e continua bloqueado pelo cenário enquanto o visual salta. A velocidade inicial é 240 px/s e pode ser ajustada na cena do personagem. O teste automatizado cobre diagonal, bloqueio, contorno, salto, limite superior, reinício e esquiva. O [guia da arena](level-design.md) descreve a autoria dos obstáculos e a troca de arte.
+
 ### 2. Combate básico e primeiro inimigo
 
 **Contexto.** Validar reconhecimento de golpe, alinhamento em profundidade e tempo de resposta.
