@@ -13,6 +13,7 @@ Atualizado em 2026-11-19. Este índice manual complementa o Project Map; não é
 | `game/arena.tscn`, `game/arena.gd` | Arena de teste, blocos de colisão e câmera lateral. | Montagem e teste de fases. |
 | `game/player.tscn`, `game/player.gd` | Personagem reutilizável, movimento no chão e colisão dos pés. | Alterações de movimento e apresentação. |
 | `game/enemy.tscn`, `game/enemy.gd` | NPC de patrulha e perseguição pelo piso navegável, animado com `sprites/aleatoria/inimigo.png`. | Ajustes de navegação, detecção e animações do inimigo. |
+| `game/wanderer.tscn`, `game/wanderer.gd`, `tests/wanderer_test.gd` | NPC neutro com destinos aleatórios, pausas e animações. | Ajustes no movimento e visual do NPC errante. |
 | `tests/enemy_test.gd` | Teste de patrulha, perseguição em torno da banca e animações. | Alterações no NPC ou na navegação da arena. |
 | `game/fire_enemy.tscn`, `game/fire_enemy.gd`, `game/fireball.gd` | Segundo NPC e projétil de fogo. | Ajustes de ataque à distância. |
 | `tests/movement_test.gd` | Teste automatizado da arena e do personagem. | Ajustes de física, ação e colisão. |

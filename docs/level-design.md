@@ -31,6 +31,8 @@ Para adicionar outro inimigo, instancie a cena diretamente sob `World`, informe 
 
 O segundo NPC usa a folha `sprites/aleatoria/inimigo2.png`. Ele detecta o jogador a até 460 px, persegue pelo caminho navegável e prepara o disparo a até 225 px quando tem linha de visão. A folha fornece poses de repouso, oito quadros de perseguição, duas poses de preparação, três de disparo e recuperação e três quadros para a bola de fogo. O NPC para durante o ataque e retoma a perseguição após se recuperar. O projétil mantém a direção do disparo e o acerto dá um flash laranja.
 
+A cena `game/wanderer.tscn` usa a folha fornecida em `sprites/aleatoria/mario.png` para repouso e caminhada. É um NPC neutro que escolhe destinos aleatórios na malha da arena e faz uma pausa ao chegar. Ele contorna os obstáculos e muda o lado do sprite conforme anda. Instancie sob `World` e ajuste `walk_speed` e `pause_duration` no Inspetor.
+
 ## Teste de regressão
 
 Se o personagem sumir depois de um `git pull`, abra o projeto no editor e espere a importação terminar antes de jogar. Para automatizar a importação de recursos como `inimigo2.png` após atualizações pelo Git, ative os hooks seguindo o [README](../README.md). O PNG vem pelo Git, e o Godot gera a textura em `.godot/imported/` em cada máquina.
@@ -41,4 +43,5 @@ Para importar e testar pelo terminal, execute na raiz do repositório.
 godot --headless --editor --path . --import
 godot --headless --path . -s res://tests/movement_test.gd
 godot --headless --path . -s res://tests/enemy_test.gd
+godot --headless --path . --fixed-fps 60 -s res://tests/wanderer_test.gd
 ```
