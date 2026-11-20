@@ -1,0 +1,30 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://game/fire_enemy.gd" id="1"]
+[ext_resource type="Texture2D" path="res://sprites/aleatoria/inimigo2.png" id="2"]
+
+[sub_resource type="Shader" id="SpriteBackground"]
+code = "shader_type canvas_item;
+
+void fragment() {
+	vec3 rgb = round(COLOR.rgb * 255.0);
+	if (rgb == vec3(146.0, 144.0, 255.0) || rgb == vec3(0.0, 41.0, 140.0)) {
+		COLOR.a = 0.0;
+	}
+}
+"
+
+[sub_resource type="ShaderMaterial" id="SpriteMaterial"]
+shader = SubResource("SpriteBackground")
+
+[node name="FireEnemy" type="Node2D"]
+script = ExtResource("1")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture_filter = 1
+material = SubResource("SpriteMaterial")
+position = Vector2(0, -24)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2")
+region_enabled = true
+region_rect = Rect2(5, 36, 22, 32)

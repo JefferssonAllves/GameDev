@@ -89,3 +89,8 @@ func _reset() -> void:
 	walk_time = 0.0
 	sprite.region_rect = idle_frame
 	reset_physics_interpolation()
+
+
+func show_fire_hit() -> void:
+	visual.modulate = Color(1.0, 0.45, 0.2)
+	create_tween().tween_property(visual, "modulate", Color.WHITE, 0.2)

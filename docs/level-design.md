@@ -29,6 +29,8 @@ A arena começa com um NPC próximo ao jogador, à esquerda e mais ao fundo, lon
 
 Para adicionar outro inimigo, instancie a cena diretamente sob `World`, informe o jogador em `target` e escolha um ponto de patrulha dentro da área navegável. Ao redesenhar o piso, ajuste o contorno do `NavigationPolygon` da raiz. Adicione os `StaticBody2D` que bloqueiam passagens ao grupo `navigation_obstacles`. A arena gera a malha a partir desse contorno e das colisões do grupo ao iniciar.
 
+O segundo NPC usa `sprites/aleatoria/inimigo2.png` e atira a cada 1,6 s enquanto o jogador estiver a até 420 px. Cada projétil segue a posição em que o jogador estava no disparo e some ao encontrar uma parede ou o jogador. O acerto dá um flash laranja, sem reduzir vida nesta arena.
+
 ## Teste de regressão
 
 Se o personagem sumir depois de um `git pull`, abra o projeto no editor e espere a importação terminar antes de jogar. Fechar e reabrir o editor força uma nova varredura. O PNG vem pelo Git, e o Godot gera a textura em `.godot/imported/` em cada máquina.

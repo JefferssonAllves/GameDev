@@ -5,6 +5,8 @@
 
 [ext_resource type="PackedScene" path="res://game/enemy.tscn" id="3"]
 
+[ext_resource type="PackedScene" path="res://game/fire_enemy.tscn" id="4"]
+
 [sub_resource type="NavigationPolygon" id="Walkable"]
 outlines = Array[PackedVector2Array]([PackedVector2Array(20, 240, 1580, 240, 1580, 500, 20, 500)])
 parsed_geometry_type = 1
@@ -115,6 +117,10 @@ position = Vector2(260, 370)
 
 [node name="Enemy" parent="World" node_paths=PackedStringArray("target") instance=ExtResource("3")]
 position = Vector2(145, 335)
+target = NodePath("../Player")
+
+[node name="FireEnemy" parent="World" node_paths=PackedStringArray("target") instance=ExtResource("4")]
+position = Vector2(420, 325)
 target = NodePath("../Player")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
