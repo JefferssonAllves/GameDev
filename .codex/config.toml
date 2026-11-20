@@ -1,3 +1,6 @@
+# Catálogo completo de skills no AGENTS.md; evita truncamento das instruções.
+project_doc_max_bytes = 262144
+
 # Configuração exclusiva deste repositório; sem credenciais versionadas.
 [mcp_servers.context7]
 url = "https://mcp.context7.com/mcp"

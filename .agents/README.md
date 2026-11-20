@@ -8,6 +8,7 @@ Instaladas em `.agents/skills/`, sem alterações em `~/.agents`, `~/.codex` ou 
 | Context7 | [f1872ebb2f3d](https://github.com/upstash/context7/tree/f1872ebb2f3d943b293bb86fdc0c2905988820d9) | `skills/context7-mcp` |
 | Godot MCP | [c62050c2b9b7](https://github.com/hybridindie/godot-mcp/tree/c62050c2b9b7b43fd559c6626f407c85a6ab1527) | As três skills de `skills/`, release estável `2026.10.20.1` |
 | Game Feel | [c6ca6c41c839](https://github.com/gamedev-skills/awesome-gamedev-agent-skills/tree/c6ca6c41c839b68319ffc08430b99ab768debc32) | `skills/disciplines/game-feel` |
+| Project Map 0.3.0 | [2945edefdb59](https://github.com/fankcoder/project-map/tree/2945edefdb59647784c7f6e957a93580e1a39505) | `skills/project-map/SKILL.md` e `scripts/project_map.py`, originais sem modificações |
 
 ## Uso
 

@@ -1,0 +1,1056 @@
+{
+  "analyzer": "0.3.0",
+  "generated_at": "2026-11-20T00:41:06+00:00",
+  "git_commit": "7bbc1c038e9e3bf398922d6fa19bceedb6ec9b60",
+  "source_fingerprint": "e556a4241eb47cfdbfbe33e68c0700ec0e8a88e5bdb5a6ebe0ef61bc49a37ed3",
+  "project_versions": {},
+  "project": "GameDev",
+  "files": {
+    ".agents/scripts/project_map.py": {
+      "sha256": "4fc54dc9c04d2ceff5a507976f899bcde7d1307d42f7f33e7670743dc60e0419",
+      "size": 38876,
+      "language": "python",
+      "imports": [
+        "__future__",
+        "argparse",
+        "ast",
+        "dataclasses",
+        "datetime",
+        "hashlib",
+        "json",
+        "os",
+        "pathlib",
+        "posixpath",
+        "re",
+        "shlex",
+        "subprocess",
+        "sys",
+        "tomllib",
+        "typing"
+      ],
+      "symbols": [
+        {
+          "kind": "class",
+          "name": "Symbol",
+          "line": 57,
+          "end_line": 63,
+          "children": [],
+          "doc": ""
+        },
+        {
+          "kind": "class",
+          "name": "FileInfo",
+          "line": 67,
+          "end_line": 74,
+          "children": [],
+          "doc": ""
+        },
+        {
+          "kind": "function",
+          "name": "symbol_to_record",
+          "line": 77,
+          "end_line": 85,
+          "children": [],
+          "doc": ""
+        },
+        {
+          "kind": "function",
+          "name": "symbol_from_record",
+          "line": 88,
+          "end_line": 109,
+          "children": [],
+          "doc": ""
+        },
+        {
+          "kind": "function",
+          "name": "file_to_record",
+          "line": 112,
+          "end_line": 120,
+          "children": [],
+          "doc": ""
+        },
+        {
+          "kind": "function",
+          "name": "file_from_record",
+          "line": 123,
+          "end_line": 153,
+          "children": [],
+          "doc": ""
+        },
+        {
+          "kind": "function",
+          "name": "run_git",
+          "line": 156,
+          "end_line": 167,
+          "children": [],
+          "doc": ""
+        },
+        {
+          "kind": "function",
+          "name": "git_files",
+          "line": 170,
+          "end_line": 176,
+          "children": [],
+          "doc": ""
+        },
+        {
+          "kind": "function",
+          "name": "discover_files",
+          "line": 179,
+          "end_line": 201,
+          "children": [],
+          "doc": ""
+        },
+        {
+          "kind": "function",
+          "name": "read_text",
+          "line": 204,
+          "end_line": 205,
+          "children": [],
+          "doc": ""
+        },
+        {
+          "kind": "function",
+          "name": "is_shell_script",
+          "line": 208,
+          "end_line": 218,
+          "children": [],
+          "doc": ""
+        },
+        {
+          "kind": "function",
+          "name": "digest",
+          "line": 221,
+          "end_line": 226,
+          "children": [],
+          "doc": ""
+        },
+        {
+          "kind": "function",
+          "name": "source_fingerprint",
+          "line": 229,
+          "end_line": 236,
+          "children": [],
+          "doc": ""
+        },
+        {
+          "kind": "function",
+          "name": "project_versions",
+          "line": 239,
+          "end_line": 269,
+          "children": [],
+          "doc": "Read declared project versions without importing project code."
+        },
+        {
+          "kind": "function",
+          "name": "clean_doc",
+          "line": 272,
+          "end_line": 275,
+          "children": [],
+          "doc": ""
+        },
+        {
+          "kind": "function",
+          "name": "python_symbols",
+          "line": 278,
+          "end_line": 295,
+          "children": [],
+          "doc": ""
+        },
+        {
+          "kind": "function",
+          "name": "python_imports",
+          "line": 298,
+          "end_line": 309,
+          "children": [],
+          "doc": ""
+        },
+        {
+          "kind": "function",
+          "name": "line_for",
+          "line": 321,
+          "end_line": 322,
+          "children": [],
+          "doc": ""
+        },
+        {
+          "kind": "function",
+          "name": "javascript_data",
+          "line": 325,
+          "end_line": 339,
+          "children": [],
+          "doc": ""
+        },
+        {
+          "kind": "function",
+          "name": "shell_tokens",
+          "line": 354,
+          "end_line": 358,
+          "children": [],
+          "doc": ""
+        },
+        {
+          "kind": "function",
+          "name": "looks_like_local_reference",
+          "line": 361,
+          "end_line": 370,
+          "children": [],
+          "doc": ""
+        },
+        {
+          "kind": "function",
+          "name": "shell_data",
+          "line": 373,
+          "end_line": 397,
+          "children": [],
+          "doc": ""
+        },
+        {
+          "kind": "function",
+          "name": "systemd_data",
+          "line": 400,
+          "end_line": 433,
+          "children": [],
+          "doc": ""
+        },
+        {
+          "kind": "function",
+          "name": "analyze_file",
+          "line": 436,
+          "end_line": 458,
+          "children": [],
+          "doc": ""
+        },
+        {
+          "kind": "function",
+          "name": "git_commit",
+          "line": 461,
+          "end_line": 462,
+          "children": [],
+          "doc": ""
+        },
+        {
+          "kind": "function",
+          "name": "git_change_candidates",
+          "line": 465,
+          "end_line": 490,
+          "children": [],
+          "doc": "Return paths Git says may differ, including working tree changes."
+        },
+        {
+          "kind": "function",
+          "name": "rel_import",
+          "line": 493,
+          "end_line": 550,
+          "children": [],
+          "doc": ""
+        },
+        {
+          "kind": "function",
+          "name": "render_symbol",
+          "line": 553,
+          "end_line": 564,
+          "children": [],
+          "doc": ""
+        },
+        {
+          "kind": "function",
+          "name": "tree_lines",
+          "line": 567,
+          "end_line": 592,
+          "children": [],
+          "doc": ""
+        },
+        {
+          "kind": "function",
+          "name": "component_lines",
+          "line": 595,
+          "end_line": 611,
+          "children": [],
+          "doc": ""
+        },
+        {
+          "kind": "function",
+          "name": "dependency_trees",
+          "line": 614,
+          "end_line": 659,
+          "children": [],
+          "doc": ""
+        },
+        {
+          "kind": "function",
+          "name": "hotspot_lines",
+          "line": 662,
+          "end_line": 670,
+          "children": [],
+          "doc": ""
+        },
+        {
+          "kind": "function",
+          "name": "display_path",
+          "line": 673,
+          "end_line": 677,
+          "children": [],
+          "doc": ""
+        },
+        {
+          "kind": "function",
+          "name": "build_map",
+          "line": 680,
+          "end_line": 809,
+          "children": [],
+          "doc": ""
+        },
+        {
+          "kind": "function",
+          "name": "manifest_for",
+          "line": 812,
+          "end_line": 822,
+          "children": [],
+          "doc": ""
+        },
+        {
+          "kind": "function",
+          "name": "output_paths",
+          "line": 825,
+          "end_line": 828,
+          "children": [],
+          "doc": ""
+        },
+        {
+          "kind": "function",
+          "name": "write_outputs",
+          "line": 831,
+          "end_line": 845,
+          "children": [],
+          "doc": ""
+        },
+        {
+          "kind": "function",
+          "name": "generate",
+          "line": 848,
+          "end_line": 864,
+          "children": [],
+          "doc": ""
+        },
+        {
+          "kind": "function",
+          "name": "load_manifest",
+          "line": 867,
+          "end_line": 872,
+          "children": [],
+          "doc": ""
+        },
+        {
+          "kind": "function",
+          "name": "update",
+          "line": 875,
+          "end_line": 946,
+          "children": [],
+          "doc": ""
+        },
+        {
+          "kind": "function",
+          "name": "parse_map_meta",
+          "line": 949,
+          "end_line": 958,
+          "children": [],
+          "doc": ""
+        },
+        {
+          "kind": "function",
+          "name": "validate",
+          "line": 961,
+          "end_line": 1017,
+          "children": [],
+          "doc": ""
+        },
+        {
+          "kind": "function",
+          "name": "main",
+          "line": 1020,
+          "end_line": 1035,
+          "children": [],
+          "doc": ""
+        }
+      ],
+      "parse_error": null
+    },
+    ".agents/skills/brainstorming/scripts/helper.js": {
+      "sha256": "43c6d69954a46ec34a2a262bcc62a9a7e83e839c739f199cb72646d397c686e3",
+      "size": 5615,
+      "language": "javascript",
+      "imports": [],
+      "symbols": [
+        {
+          "kind": "function",
+          "name": "nextReconnectDelay",
+          "line": 7,
+          "end_line": 7,
+          "children": [],
+          "doc": ""
+        },
+        {
+          "kind": "function",
+          "name": "sessionKey",
+          "line": 24,
+          "end_line": 24,
+          "children": [],
+          "doc": ""
+        },
+        {
+          "kind": "function",
+          "name": "websocketUrl",
+          "line": 31,
+          "end_line": 31,
+          "children": [],
+          "doc": ""
+        },
+        {
+          "kind": "function",
+          "name": "reloadAfterRecovery",
+          "line": 36,
+          "end_line": 36,
+          "children": [],
+          "doc": ""
+        },
+        {
+          "kind": "function",
+          "name": "setStatus",
+          "line": 47,
+          "end_line": 47,
+          "children": [],
+          "doc": ""
+        },
+        {
+          "kind": "function",
+          "name": "showTombstone",
+          "line": 62,
+          "end_line": 62,
+          "children": [],
+          "doc": ""
+        },
+        {
+          "kind": "function",
+          "name": "connect",
+          "line": 76,
+          "end_line": 76,
+          "children": [],
+          "doc": ""
+        },
+        {
+          "kind": "function",
+          "name": "sendEvent",
+          "line": 119,
+          "end_line": 119,
+          "children": [],
+          "doc": ""
+        }
+      ],
+      "parse_error": null
+    },
+    ".agents/skills/brainstorming/scripts/server.cjs": {
+      "sha256": "763abf96510e0b892a1141397b31aa82ef900cf87ed34dde94bc8782baf4a7ca",
+      "size": 25699,
+      "language": "javascript",
+      "imports": [
+        "child_process",
+        "crypto",
+        "fs",
+        "http",
+        "os",
+        "path"
+      ],
+      "symbols": [
+        {
+          "kind": "function",
+          "name": "computeAcceptKey",
+          "line": 11,
+          "end_line": 11,
+          "children": [],
+          "doc": ""
+        },
+        {
+          "kind": "function",
+          "name": "encodeFrame",
+          "line": 15,
+          "end_line": 15,
+          "children": [],
+          "doc": ""
+        },
+        {
+          "kind": "function",
+          "name": "decodeFrame",
+          "line": 39,
+          "end_line": 39,
+          "children": [],
+          "doc": ""
+        },
+        {
+          "kind": "function",
+          "name": "preferredPort",
+          "line": 89,
+          "end_line": 89,
+          "children": [],
+          "doc": ""
+        },
+        {
+          "kind": "function",
+          "name": "generateToken",
+          "line": 124,
+          "end_line": 124,
+          "children": [],
+          "doc": ""
+        },
+        {
+          "kind": "function",
+          "name": "chmodOwnerOnly",
+          "line": 127,
+          "end_line": 127,
+          "children": [],
+          "doc": ""
+        },
+        {
+          "kind": "function",
+          "name": "initialToken",
+          "line": 131,
+          "end_line": 131,
+          "children": [],
+          "doc": ""
+        },
+        {
+          "kind": "function",
+          "name": "waitingPage",
+          "line": 160,
+          "end_line": 160,
+          "children": [],
+          "doc": ""
+        },
+        {
+          "kind": "function",
+          "name": "bootstrapPage",
+          "line": 187,
+          "end_line": 187,
+          "children": [],
+          "doc": ""
+        },
+        {
+          "kind": "function",
+          "name": "readSuperpowersVersion",
+          "line": 207,
+          "end_line": 207,
+          "children": [],
+          "doc": ""
+        },
+        {
+          "kind": "function",
+          "name": "isTruthyEnv",
+          "line": 226,
+          "end_line": 226,
+          "children": [],
+          "doc": ""
+        },
+        {
+          "kind": "function",
+          "name": "escapeHtmlText",
+          "line": 233,
+          "end_line": 233,
+          "children": [],
+          "doc": ""
+        },
+        {
+          "kind": "function",
+          "name": "brandMarkup",
+          "line": 241,
+          "end_line": 241,
+          "children": [],
+          "doc": ""
+        },
+        {
+          "kind": "function",
+          "name": "renderBranding",
+          "line": 253,
+          "end_line": 253,
+          "children": [],
+          "doc": ""
+        },
+        {
+          "kind": "function",
+          "name": "isFullDocument",
+          "line": 257,
+          "end_line": 257,
+          "children": [],
+          "doc": ""
+        },
+        {
+          "kind": "function",
+          "name": "wrapInFrame",
+          "line": 262,
+          "end_line": 262,
+          "children": [],
+          "doc": ""
+        },
+        {
+          "kind": "function",
+          "name": "getNewestScreen",
+          "line": 266,
+          "end_line": 266,
+          "children": [],
+          "doc": ""
+        },
+        {
+          "kind": "function",
+          "name": "urlHostForHttp",
+          "line": 279,
+          "end_line": 279,
+          "children": [],
+          "doc": ""
+        },
+        {
+          "kind": "function",
+          "name": "companionUrl",
+          "line": 285,
+          "end_line": 285,
+          "children": [],
+          "doc": ""
+        },
+        {
+          "kind": "function",
+          "name": "browserLauncherForPlatform",
+          "line": 289,
+          "end_line": 289,
+          "children": [],
+          "doc": ""
+        },
+        {
+          "kind": "function",
+          "name": "isRegularFileInsideContentDir",
+          "line": 303,
+          "end_line": 303,
+          "children": [],
+          "doc": ""
+        },
+        {
+          "kind": "function",
+          "name": "timingSafeEqualStr",
+          "line": 320,
+          "end_line": 320,
+          "children": [],
+          "doc": ""
+        },
+        {
+          "kind": "function",
+          "name": "parseCookies",
+          "line": 327,
+          "end_line": 327,
+          "children": [],
+          "doc": ""
+        },
+        {
+          "kind": "function",
+          "name": "isAuthorized",
+          "line": 341,
+          "end_line": 341,
+          "children": [],
+          "doc": ""
+        },
+        {
+          "kind": "function",
+          "name": "pathnameOf",
+          "line": 354,
+          "end_line": 354,
+          "children": [],
+          "doc": ""
+        },
+        {
+          "kind": "function",
+          "name": "queryKey",
+          "line": 359,
+          "end_line": 359,
+          "children": [],
+          "doc": ""
+        },
+        {
+          "kind": "function",
+          "name": "securityHeaders",
+          "line": 365,
+          "end_line": 365,
+          "children": [],
+          "doc": ""
+        },
+        {
+          "kind": "function",
+          "name": "isAllowedWebSocketOrigin",
+          "line": 376,
+          "end_line": 376,
+          "children": [],
+          "doc": ""
+        },
+        {
+          "kind": "function",
+          "name": "handleRequest",
+          "line": 386,
+          "end_line": 386,
+          "children": [],
+          "doc": ""
+        },
+        {
+          "kind": "function",
+          "name": "handleUpgrade",
+          "line": 443,
+          "end_line": 443,
+          "children": [],
+          "doc": ""
+        },
+        {
+          "kind": "function",
+          "name": "handleMessage",
+          "line": 502,
+          "end_line": 502,
+          "children": [],
+          "doc": ""
+        },
+        {
+          "kind": "function",
+          "name": "broadcast",
+          "line": 518,
+          "end_line": 518,
+          "children": [],
+          "doc": ""
+        },
+        {
+          "kind": "function",
+          "name": "maybeOpenBrowser",
+          "line": 530,
+          "end_line": 530,
+          "children": [],
+          "doc": ""
+        },
+        {
+          "kind": "function",
+          "name": "touchActivity",
+          "line": 565,
+          "end_line": 565,
+          "children": [],
+          "doc": ""
+        },
+        {
+          "kind": "function",
+          "name": "startServer",
+          "line": 575,
+          "end_line": 575,
+          "children": [],
+          "doc": ""
+        },
+        {
+          "kind": "function",
+          "name": "shutdown",
+          "line": 615,
+          "end_line": 615,
+          "children": [],
+          "doc": ""
+        },
+        {
+          "kind": "function",
+          "name": "ownerAlive",
+          "line": 633,
+          "end_line": 633,
+          "children": [],
+          "doc": ""
+        },
+        {
+          "kind": "function",
+          "name": "onListen",
+          "line": 662,
+          "end_line": 662,
+          "children": [],
+          "doc": ""
+        }
+      ],
+      "parse_error": null
+    },
+    ".agents/skills/brainstorming/scripts/start-server.sh": {
+      "sha256": "314dd68dc00e8dd94c7491aca8a5f004c7fddffc161e2b07482f29f48d13659a",
+      "size": 7315,
+      "language": "shell",
+      "imports": [
+        "LOG_FILE=${STATE_DIR}/server.log",
+        "OWNER_PID=$(ps -o ppid= -p $PPID 2>/dev/null | tr -d ' ')",
+        "PID_FILE=${STATE_DIR}/server.pid",
+        "SERVER_ID=$(od -An -N24 -tx1 /dev/urandom 2>/dev/null | tr -d ' \\n' || true)",
+        "SERVER_ID_FILE=${STATE_DIR}/server-instance-id",
+        "SESSION_DIR=${PROJECT_DIR}/.superpowers/brainstorm/${SESSION_ID}",
+        "SESSION_DIR=/tmp/brainstorm-${SESSION_ID}",
+        "STATE_DIR=${SESSION_DIR}/state",
+        "uname_s=$(uname -s 2>/dev/null || true)"
+      ],
+      "symbols": [
+        {
+          "kind": "function",
+          "name": "is_windows_like_shell",
+          "line": 81,
+          "end_line": 81,
+          "children": [],
+          "doc": ""
+        }
+      ],
+      "parse_error": null
+    },
+    ".agents/skills/brainstorming/scripts/stop-server.sh": {
+      "sha256": "0b5ccbbd57f62d3ed88993f7940b5ee0e5c0fc9b21c550c623da4f6292e47daf",
+      "size": 3263,
+      "language": "shell",
+      "imports": [
+        "PID_FILE=${STATE_DIR}/server.pid",
+        "SERVER_ID_FILE=${STATE_DIR}/server-instance-id",
+        "STATE_DIR=${SESSION_DIR}/state",
+        "id=$(tr -d '\\r\\n' < $SERVER_ID_FILE 2>/dev/null || true)"
+      ],
+      "symbols": [
+        {
+          "kind": "function",
+          "name": "mark_stopped",
+          "line": 19,
+          "end_line": 19,
+          "children": [],
+          "doc": ""
+        },
+        {
+          "kind": "function",
+          "name": "read_expected_server_id",
+          "line": 25,
+          "end_line": 25,
+          "children": [],
+          "doc": ""
+        },
+        {
+          "kind": "function",
+          "name": "command_line_for_pid",
+          "line": 33,
+          "end_line": 33,
+          "children": [],
+          "doc": ""
+        },
+        {
+          "kind": "function",
+          "name": "command_has_server_id",
+          "line": 42,
+          "end_line": 42,
+          "children": [],
+          "doc": ""
+        },
+        {
+          "kind": "function",
+          "name": "is_brainstorm_server",
+          "line": 65,
+          "end_line": 65,
+          "children": [],
+          "doc": ""
+        }
+      ],
+      "parse_error": null
+    },
+    ".agents/skills/executing-plans/scripts/task-done": {
+      "sha256": "ac0b5ebafc7d471507b7e94d88da77a11f187ba277c8d48fefaf8ff3e4fee50e",
+      "size": 1900,
+      "language": "shell",
+      "imports": [
+        "$@",
+        "dir=$($sdd/sdd-workspace",
+        "ledger=$dir/progress.md",
+        "log=$dir/task-${n}-tests.log"
+      ],
+      "symbols": [],
+      "parse_error": null
+    },
+    ".agents/skills/executing-plans/scripts/task-start": {
+      "sha256": "4ae7ce3b6777c3240af786197836a6b4bbf3b0ee831c25f147c149ea8db54a21",
+      "size": 1185,
+      "language": "shell",
+      "imports": [
+        "out=$($sdd/task-brief"
+      ],
+      "symbols": [],
+      "parse_error": null
+    },
+    ".agents/skills/subagent-driven-development/scripts/review-package": {
+      "sha256": "aed7c6e09fc660417d28898ed975e84651cb9f18f4675141cd475edfb7037f3d",
+      "size": 2444,
+      "language": "shell",
+      "imports": [
+        "out=$dir/review-$(git -C $repo rev-parse --short $base)..$(git -C $repo rev-parse --short $head).diff"
+      ],
+      "symbols": [
+        {
+          "kind": "function",
+          "name": "fi",
+          "line": 48,
+          "end_line": 48,
+          "children": [],
+          "doc": ""
+        }
+      ],
+      "parse_error": null
+    },
+    ".agents/skills/subagent-driven-development/scripts/sdd-repo": {
+      "sha256": "6f8256a776968d394bae679572e41ce572fd45c72074b98f9a8eb8b4f160e06f",
+      "size": 2356,
+      "language": "shell",
+      "imports": [],
+      "symbols": [],
+      "parse_error": null
+    },
+    ".agents/skills/subagent-driven-development/scripts/sdd-workspace": {
+      "sha256": "de3af5252fa595fc2000ba05cf69e06187d5c8aae9d283cced4c167ad1813061",
+      "size": 4823,
+      "language": "shell",
+      "imports": [
+        "$root/*)",
+        "base=$root/.superpowers/sdd",
+        "dir=$base/$slug",
+        "dir=$base/$slug-$parent",
+        "dir=$base/$slug-$parent-$n",
+        "plan_abs=$plan_dir/$(basename $plan)"
+      ],
+      "symbols": [
+        {
+          "kind": "function",
+          "name": "owns",
+          "line": 80,
+          "end_line": 80,
+          "children": [],
+          "doc": ""
+        }
+      ],
+      "parse_error": null
+    },
+    ".agents/skills/subagent-driven-development/scripts/task-brief": {
+      "sha256": "0f244a12e146393c552ba62069d3eedcc85cb3f76de67b01f4e11219e5ebbcd8",
+      "size": 4769,
+      "language": "shell",
+      "imports": [
+        "/^```/",
+        "out=$dir/task-${n}-brief.md",
+        "sub(/^"
+      ],
+      "symbols": [
+        {
+          "kind": "function",
+          "name": "intask",
+          "line": 81,
+          "end_line": 81,
+          "children": [],
+          "doc": ""
+        },
+        {
+          "kind": "function",
+          "name": "END",
+          "line": 82,
+          "end_line": 82,
+          "children": [],
+          "doc": ""
+        }
+      ],
+      "parse_error": null
+    },
+    ".agents/skills/systematic-debugging/condition-based-waiting-example.ts": {
+      "sha256": "40ae5ebe497fdf310200e43fe986552546d0a22837c0d39e855db1cfd33eb88e",
+      "size": 5054,
+      "language": "typescript",
+      "imports": [
+        "~/threads/thread-manager",
+        "~/threads/types"
+      ],
+      "symbols": [
+        {
+          "kind": "function",
+          "name": "waitForEvent",
+          "line": 20,
+          "end_line": 20,
+          "children": [],
+          "doc": ""
+        },
+        {
+          "kind": "function",
+          "name": "waitForEventCount",
+          "line": 60,
+          "end_line": 60,
+          "children": [],
+          "doc": ""
+        },
+        {
+          "kind": "function",
+          "name": "waitForEventMatch",
+          "line": 111,
+          "end_line": 111,
+          "children": [],
+          "doc": ""
+        }
+      ],
+      "parse_error": null
+    },
+    ".agents/skills/systematic-debugging/find-polluter.sh": {
+      "sha256": "dd7b8f13c4cc2a24b33ff87b18da9248f3e1c80a085c3316224f69ff0fa5c43c",
+      "size": 1986,
+      "language": "shell",
+      "imports": [
+        "TEST_PATTERN=${TEST_PATTERN#./}"
+      ],
+      "symbols": [],
+      "parse_error": null
+    },
+    ".agents/skills/writing-skills/render-graphs.js": {
+      "sha256": "c7f412cc629461c4d10287e668731874c0497707023e3e3f74a5355eb2cee196",
+      "size": 4968,
+      "language": "javascript",
+      "imports": [
+        "child_process",
+        "fs",
+        "path"
+      ],
+      "symbols": [
+        {
+          "kind": "function",
+          "name": "extractDotBlocks",
+          "line": 19,
+          "end_line": 19,
+          "children": [],
+          "doc": ""
+        },
+        {
+          "kind": "function",
+          "name": "extractGraphBody",
+          "line": 37,
+          "end_line": 37,
+          "children": [],
+          "doc": ""
+        },
+        {
+          "kind": "function",
+          "name": "combineGraphs",
+          "line": 50,
+          "end_line": 50,
+          "children": [],
+          "doc": ""
+        },
+        {
+          "kind": "function",
+          "name": "renderToSvg",
+          "line": 69,
+          "end_line": 69,
+          "children": [],
+          "doc": ""
+        },
+        {
+          "kind": "function",
+          "name": "main",
+          "line": 83,
+          "end_line": 83,
+          "children": [],
+          "doc": ""
+        }
+      ],
+      "parse_error": null
+    }
+  }
+}
