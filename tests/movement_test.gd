@@ -35,7 +35,7 @@ func _run() -> void:
 	Input.action_release("move_down")
 	Input.action_press("run")
 	await _ticks(10)
-	_check(sprite.animation == &"corrida_e_esquiva" and player.velocity.length() > 240.0, "Corrida acelera e toca a sequência de corrida")
+	_check(sprite.animation == &"correr" and player.velocity.length() > 240.0, "Corrida acelera e toca a sequência de corrida")
 	Input.action_release("run")
 
 	player.position = Vector2(410, 370)
@@ -46,7 +46,7 @@ func _run() -> void:
 	_check(player.get_node("Visual").position.y < 0.0, "Salto desloca o visual")
 	_check(absf(player.position.x - 445.0) < 0.3, "Salto preserva a colisão dos pés")
 	var rise_frame := sprite.frame
-	_check(sprite.animation == &"saltos_e_acrobacias", "Subida usa pose aérea")
+	_check(sprite.animation == &"pular", "Subida usa pose aérea")
 	Input.action_release("jump")
 	await _ticks(18)
 	_check(player.get_node("Visual").position.y < 0.0 and sprite.frame != rise_frame, "Descida usa outra pose aérea")
@@ -86,7 +86,7 @@ func _run() -> void:
 	Input.action_press("kick")
 	await _ticks(3)
 	Input.action_release("kick")
-	_check(sprite.animation == &"ginga_e_chutes", "Chute toca a sequência de ataque")
+	_check(sprite.animation == &"meia_lua", "Chute toca a sequência de ataque")
 	await _ticks(30)
 	_check(enemy.position.x > enemy_start.x, "Chute empurra um inimigo próximo à frente")
 

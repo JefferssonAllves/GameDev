@@ -20,7 +20,7 @@ var jump_height := 0.0
 var vertical_speed := 0.0
 var move_clip: StringName = &""
 var strike_pending := false
-var dodge_clip: StringName = &"esquivas_e_golpes"
+var dodge_clip: StringName = &"esquiva_frente"
 
 
 func _physics_process(delta: float) -> void:
@@ -37,7 +37,7 @@ func _physics_process(delta: float) -> void:
 			facing = signf(direction.x)
 		if Input.is_action_just_pressed("dash") and recovery_remaining <= 0.0 and jump_height <= 0.0:
 			dash_direction = direction.normalized() if direction != Vector2.ZERO else Vector2(facing, 0.0)
-			dodge_clip = &"rolamentos" if running else &"esquivas_e_golpes"
+			dodge_clip = &"role" if running else &"esquiva_frente"
 			dash_remaining = dash_duration
 			recovery_remaining = dash_duration + dash_recovery
 
@@ -69,16 +69,16 @@ func _physics_process(delta: float) -> void:
 func _read_move_inputs(running: bool) -> void:
 	if Input.is_action_just_pressed("kick"):
 		if jump_height > 0.0:
-			_start_move(&"chutes_aereos_e_au", true)
+			_start_move(&"chute_aereo", true)
 		else:
-			_start_move(&"chutes_giratorios" if running else &"ginga_e_chutes", true)
+			_start_move(&"armada" if running else &"meia_lua", true)
 	elif jump_height <= 0.0:
 		if Input.is_action_just_pressed("sweep"):
-			_start_move(&"chutes_e_rasteiras", true)
+			_start_move(&"queixada", true)
 		elif Input.is_action_just_pressed("acrobatics"):
-			_start_move(&"bananeira_e_transicao" if running else &"esquivas_e_giros", false)
+			_start_move(&"au", false)
 		elif Input.is_action_just_pressed("celebrate"):
-			_start_move(&"ginga_e_celebracao", false)
+			_start_move(&"ginga", false)
 
 
 func _start_move(clip: StringName, strikes: bool) -> void:
@@ -97,24 +97,22 @@ func _update_sprite(running: bool) -> void:
 			return
 		move_clip = &""
 	if jump_height > 0.0:
-		sprite.play(&"saltos_e_acrobacias")
+		sprite.play(&"pular")
 		sprite.pause()
-		sprite.frame = 1 if vertical_speed > 0.0 else 21
+		var last := sprite.sprite_frames.get_frame_count(&"pular") - 1
+		var progress := clampf((1.0 - vertical_speed / jump_speed) * 0.5, 0.0, 1.0)
+		sprite.frame = roundi(progress * last)
 	elif dash_remaining > 0.0:
 		sprite.play(dodge_clip)
 		sprite.pause()
 		var last := sprite.sprite_frames.get_frame_count(dodge_clip) - 1
 		sprite.frame = clampi(roundi((1.0 - dash_remaining / dash_duration) * last), 0, last)
 	else:
-		var clip: StringName = &"guarda_e_avanco"
+		var clip: StringName = &"repouso"
 		if get_real_velocity().length_squared() > 1.0:
-			clip = &"corrida_e_esquiva" if running else &"ginga_e_au"
+			clip = &"correr" if running else &"andar"
 		if sprite.animation != clip or not sprite.is_playing():
 			sprite.play(clip)
-			sprite.set_frame_and_progress(0, 0.0)
-		# Repetir a parte de locomoção, sem tocar golpes que dividem a fileira.
-		var last_frame := 6 if clip == &"guarda_e_avanco" else (7 if running else 5)
-		if sprite.frame > last_frame:
 			sprite.set_frame_and_progress(0, 0.0)
 
 
@@ -137,13 +135,13 @@ func _reset() -> void:
 	visual.scale.x = 1.0
 	move_clip = &""
 	strike_pending = false
-	sprite.play(&"guarda_e_avanco")
+	sprite.play(&"repouso")
 	sprite.set_frame_and_progress(0, 0.0)
 	reset_physics_interpolation()
 
 
 func show_fire_hit() -> void:
 	if jump_height <= 0.0 and dash_remaining <= 0.0:
-		_start_move(&"queda_e_levantada", false)
+		_start_move(&"queda", false)
 	visual.modulate = Color(1.0, 0.45, 0.2)
 	create_tween().tween_property(visual, "modulate", Color.WHITE, 0.2)

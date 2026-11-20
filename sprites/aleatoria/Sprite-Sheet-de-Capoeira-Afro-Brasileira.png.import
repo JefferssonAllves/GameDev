@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://r8yklo8hkk52"
-path="res://.godot/imported/Folha de sprites do lutador de capoeira.webp-5fcfa51d91b295d41c0c8e3a961beee2.ctex"
+uid="uid://ck520kh8b6eko"
+path="res://.godot/imported/Sprite-Sheet-de-Capoeira-Afro-Brasileira.png-d31db99409518c00ab34ecd3cc5f5e27.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/aleatoria/Folha de sprites do lutador de capoeira.webp"
-dest_files=["res://.godot/imported/Folha de sprites do lutador de capoeira.webp-5fcfa51d91b295d41c0c8e3a961beee2.ctex"]
+source_file="res://sprites/aleatoria/Sprite-Sheet-de-Capoeira-Afro-Brasileira.png"
+dest_files=["res://.godot/imported/Sprite-Sheet-de-Capoeira-Afro-Brasileira.png-d31db99409518c00ab34ecd3cc5f5e27.ctex"]
 
 [params]
 
