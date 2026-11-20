@@ -33,14 +33,14 @@ A cena `game/wanderer.tscn` usa a folha fornecida em `sprites/aleatoria/mario.pn
 
 O Nerd (`game/reader.tscn`) fica parado à direita da banca com o livro aberto. A animação de leitura inclina levemente a pose em torno dos pés e repete a cada 2,4 s. A folha `sprites/aleatoria/nerd.png` preserva os créditos de seus sprites originais e da edição no cabeçalho.
 
-O Capoeirista é o jogador. A folha `sprites/aleatoria/Sprite-Sheet-de-Capoeira-Afro-Brasileira.png` fornece sequências distintas para respiração, caminhada e corrida. Segure **Ctrl / clique no analógico esquerdo** para correr. **Espaço / A** percorre a fileira de salto conforme a velocidade vertical. **Shift / B** esquiva e, com corrida, rola.
+O Capoeirista é o jogador. A folha `sprites/aleatoria/Sprite Sheet de Capoeira em Pixel Art.webp` fornece as poses de ginga, corrida, ataques e salto. O personagem usa ginga em repouso e aumenta a cadência ao andar. A fase dos quadros é preservada ao alternar entre ginga e corrida. Segure **Ctrl / clique no analógico esquerdo** para correr. **Espaço / A** percorre a fileira de salto conforme a velocidade vertical. **Shift / B** esquiva e, com corrida, rola.
 
 | Ação | Teclado | Controle |
 | --- | --- | --- |
 | Chute. No ar, chute aéreo. Com corrida, chute giratório. | J | X |
 | Queixada com o efeito de empurrão da rasteira | K | Y |
-| Aú (estrela) | L | LB |
-| Ginga no lugar | H | RB |
+| Acrobacia com quadros do salto | L | LB |
+| Segurar para acelerar a ginga no lugar | H | RB |
 
 Chute e queixada empurram os inimigos próximos à frente. Um projétil de fogo no chão ativa a queda e a levantada e interrompe o golpe atual. A arena ainda não tem sistema de vida.
 

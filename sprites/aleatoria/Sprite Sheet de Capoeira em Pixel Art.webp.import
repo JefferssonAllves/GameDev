@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ck520kh8b6eko"
-path="res://.godot/imported/Sprite-Sheet-de-Capoeira-Afro-Brasileira.png-d31db99409518c00ab34ecd3cc5f5e27.ctex"
+uid="uid://bxwcthgm20wyy"
+path="res://.godot/imported/Sprite Sheet de Capoeira em Pixel Art.webp-6b1cf4528751297fa3ebe04c3057992e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/aleatoria/Sprite-Sheet-de-Capoeira-Afro-Brasileira.png"
-dest_files=["res://.godot/imported/Sprite-Sheet-de-Capoeira-Afro-Brasileira.png-d31db99409518c00ab34ecd3cc5f5e27.ctex"]
+source_file="res://sprites/aleatoria/Sprite Sheet de Capoeira em Pixel Art.webp"
+dest_files=["res://.godot/imported/Sprite Sheet de Capoeira em Pixel Art.webp-6b1cf4528751297fa3ebe04c3057992e.ctex"]
 
 [params]
 
