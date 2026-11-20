@@ -37,6 +37,8 @@ A cena `game/wanderer.tscn` usa a folha fornecida em `sprites/aleatoria/mario.pn
 
 Se o personagem sumir depois de um `git pull`, abra o projeto no editor e espere a importação terminar antes de jogar. Para automatizar a importação de recursos como `inimigo2.png` após atualizações pelo Git, ative os hooks seguindo o [README](../README.md). O PNG vem pelo Git, e o Godot gera a textura em `.godot/imported/` em cada máquina.
 
+Se o log citar `mario.png` seguido de um erro em `wanderer.tscn`, confira se `git config --local --get core.hooksPath` retorna `.githooks`. Neste caso, o PNG estava versionado e faltava a textura gerada. Executar `sh .githooks/setup` corrigiu o clone afetado. Em um segundo clone, um `git pull --ff-only` importou o PNG automaticamente e o teste do NPC errante passou.
+
 Para importar e testar pelo terminal, execute na raiz do repositório.
 
 ```sh
