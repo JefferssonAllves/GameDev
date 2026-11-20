@@ -1,5 +1,10 @@
 extends CharacterBody2D
 
+const WALK_FRAME_X := [72, 124, 176, 228, 280]
+const WALK_FPS := 10.0
+const RISE_FRAME := Rect2(332, 114, 42, 46)
+const FALL_FRAME := Rect2(384, 114, 42, 46)
+
 @export var ground_speed := 240.0
 @export var acceleration := 2100.0
 @export var dash_speed := 520.0
@@ -9,6 +14,8 @@ extends CharacterBody2D
 @export var jump_gravity := 1150.0
 
 @onready var visual: Node2D = $Visual
+@onready var sprite: Sprite2D = $Visual/Sprite
+@onready var idle_frame := sprite.region_rect
 @onready var spawn := position
 
 var facing := 1.0
@@ -17,6 +24,7 @@ var dash_remaining := 0.0
 var recovery_remaining := 0.0
 var jump_height := 0.0
 var vertical_speed := 0.0
+var walk_time := 0.0
 
 
 func _physics_process(delta: float) -> void:
@@ -52,6 +60,20 @@ func _physics_process(delta: float) -> void:
 	visual.position.y = -jump_height
 	visual.scale.x = facing
 	move_and_slide()
+	_update_sprite(delta)
+
+
+func _update_sprite(delta: float) -> void:
+	if jump_height > 0.0:
+		walk_time = 0.0
+		sprite.region_rect = RISE_FRAME if vertical_speed > 0.0 else FALL_FRAME
+	elif get_real_velocity().length_squared() > 1.0:
+		var frame := int(walk_time * WALK_FPS)
+		sprite.region_rect = Rect2(WALK_FRAME_X[frame], 114, 42, 43)
+		walk_time = fposmod(walk_time + delta, WALK_FRAME_X.size() / WALK_FPS)
+	else:
+		walk_time = 0.0
+		sprite.region_rect = idle_frame
 
 
 func _reset() -> void:
@@ -64,4 +86,6 @@ func _reset() -> void:
 	vertical_speed = 0.0
 	visual.position.y = 0.0
 	visual.scale.x = 1.0
+	walk_time = 0.0
+	sprite.region_rect = idle_frame
 	reset_physics_interpolation()

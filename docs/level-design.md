@@ -19,7 +19,7 @@ Abra `game/arena.tscn` no Godot e pressione **F6** para testar a arena. A cena t
 
 A banca e o caixote demonstram a separação. É possível ocultar ou trocar seus nós `Visual` mantendo os polígonos físicos. A instância de `game/player.tscn` permite ajustar velocidade, aceleração, salto e esquiva pelo Inspetor.
 
-O jogador usa o quadro de repouso da folha em `sprites/aleatoria/`, com fundo ocultado por material na cena. A pose acompanha o salto e a direção por meio do nó `Visual`.
+O jogador usa a folha em `sprites/aleatoria/`, com fundo ocultado pelo material da cena. Em solo, a pose alterna entre repouso e cinco quadros de caminhada conforme o deslocamento real. No ar, a subida e a descida têm poses distintas. O nó `Visual` controla a altura e o espelhamento, enquanto a colisão continua nos pés.
 
 ## Teste de regressão
 

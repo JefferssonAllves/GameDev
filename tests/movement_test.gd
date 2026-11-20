@@ -19,12 +19,18 @@ func _run() -> void:
 	var player := arena.get_node("World/Player") as CharacterBody2D
 	await _ticks(2)
 	var spawn := player.position
+	var sprite := player.get_node("Visual/Sprite") as Sprite2D
+	var idle_frame := sprite.region_rect
 
 	Input.action_press("move_right")
 	Input.action_press("move_down")
 	await _ticks(20)
 	_check(player.position.x > spawn.x and player.position.y > spawn.y, "Movimento diagonal")
 	_check(is_equal_approx(player.velocity.length(), 240.0), "Diagonal normalizada")
+	_check(sprite.region_rect != idle_frame, "Movimento usa os quadros de caminhada")
+	var walk_frame := sprite.region_rect
+	await _ticks(8)
+	_check(sprite.region_rect != walk_frame, "Caminhada alterna quadros")
 	Input.action_release("move_down")
 
 	player.position = Vector2(410, 370)
@@ -34,7 +40,11 @@ func _run() -> void:
 	await _ticks(5)
 	_check(player.get_node("Visual").position.y < 0.0, "Salto desloca o visual")
 	_check(absf(player.position.x - 445.0) < 0.3, "Salto preserva a colisão dos pés")
+	var rise_frame := sprite.region_rect
+	_check(rise_frame != idle_frame, "Subida usa pose aérea")
 	Input.action_release("jump")
+	await _ticks(18)
+	_check(player.get_node("Visual").position.y < 0.0 and sprite.region_rect != rise_frame, "Descida usa outra pose aérea")
 
 	Input.action_press("move_up")
 	await _ticks(110)
@@ -47,6 +57,7 @@ func _run() -> void:
 	await _ticks(2)
 	Input.action_release("reset_arena")
 	_check(player.position.is_equal_approx(spawn), "Reinício restaura a posição")
+	_check(sprite.region_rect == idle_frame, "Reinício restaura a pose de repouso")
 	Input.action_press("dash")
 	await _ticks(4)
 	_check(player.position.x > spawn.x + 22, "Esquiva acelera na direção do personagem")
