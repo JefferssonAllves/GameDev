@@ -29,7 +29,7 @@ A arena começa com um NPC próximo ao jogador, à esquerda e mais ao fundo, lon
 
 Para adicionar outro inimigo, instancie a cena diretamente sob `World`, informe o jogador em `target` e escolha um ponto de patrulha dentro da área navegável. Ao redesenhar o piso, ajuste o contorno do `NavigationPolygon` da raiz. Adicione os `StaticBody2D` que bloqueiam passagens ao grupo `navigation_obstacles`. A arena gera a malha a partir desse contorno e das colisões do grupo ao iniciar.
 
-O segundo NPC usa `sprites/aleatoria/inimigo2.png` e atira a cada 1,6 s enquanto o jogador estiver a até 420 px. Cada projétil segue a posição em que o jogador estava no disparo e some ao encontrar uma parede ou o jogador. O acerto dá um flash laranja, sem reduzir vida nesta arena.
+O segundo NPC usa a folha `sprites/aleatoria/inimigo2.png`. Ele detecta o jogador a até 460 px, persegue pelo caminho navegável e prepara o disparo a até 225 px quando tem linha de visão. A folha fornece poses de repouso, oito quadros de perseguição, duas poses de preparação, três de disparo e recuperação e três quadros para a bola de fogo. O NPC para durante o ataque e retoma a perseguição após se recuperar. O projétil mantém a direção do disparo e o acerto dá um flash laranja.
 
 ## Teste de regressão
 
