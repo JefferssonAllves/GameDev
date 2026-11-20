@@ -33,7 +33,7 @@ O segundo NPC usa `sprites/aleatoria/inimigo2.png` e atira a cada 1,6 s enquanto
 
 ## Teste de regressão
 
-Se o personagem sumir depois de um `git pull`, abra o projeto no editor e espere a importação terminar antes de jogar. Fechar e reabrir o editor força uma nova varredura. O PNG vem pelo Git, e o Godot gera a textura em `.godot/imported/` em cada máquina.
+Se o personagem sumir depois de um `git pull`, abra o projeto no editor e espere a importação terminar antes de jogar. Para automatizar a importação de recursos como `inimigo2.png` após atualizações pelo Git, ative os hooks seguindo o [README](../README.md). O PNG vem pelo Git, e o Godot gera a textura em `.godot/imported/` em cada máquina.
 
 Para importar e testar pelo terminal, execute na raiz do repositório.
 
