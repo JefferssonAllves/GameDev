@@ -1,13 +1,13 @@
 # Project Map
 
-<!-- project-map: {"analyzer": "0.3.0", "generated_at": "2026-11-20T01:39:21+00:00", "git_commit": "d0f4151d3fa82029245cf8c23ecc3d69919d312d", "source_fingerprint": "d79366c467c46605cec9873c5347608f7a2333c68f4987c9b50adad276f9860e"} -->
+<!-- project-map: {"analyzer": "0.3.0", "generated_at": "2026-11-20T01:47:30+00:00", "git_commit": "548fb6aace14ff2067a945041d0dc53a8d935d8e", "source_fingerprint": "d79366c467c46605cec9873c5347608f7a2333c68f4987c9b50adad276f9860e"} -->
 This is a generated navigation index. Validate it before relying on it; read source files before editing. FRESH means the indexed files match, not that every repository file is covered.
 
 ## Snapshot
 
 - Analyzer: `0.3.0`
-- Generated (UTC): `2026-11-20T01:39:21+00:00`
-- Git commit: `d0f4151d3fa82029245cf8c23ecc3d69919d312d`
+- Generated (UTC): `2026-11-20T01:47:30+00:00`
+- Git commit: `548fb6aace14ff2067a945041d0dc53a8d935d8e`
 - Source fingerprint: `d79366c467c46605cec9873c5347608f7a2333c68f4987c9b50adad276f9860e`
 - Indexed files: `18`
 - Declared project versions: `none detected`
@@ -20,6 +20,14 @@ This is a generated navigation index. Validate it before relying on it; read sou
 - Selected project files: `pyproject.toml`, `setup.py`, `setup.cfg`, `requirements.txt`, `package.json`, `tsconfig.json`, `Cargo.toml`, `manage.py`, `Dockerfile`, `Makefile`, Compose files, `CMakeLists.txt`, Go modules, Maven/Gradle files, and `Procfile`.
 - Freshness scope: only files listed in this map and manifest. Unlisted repository files are not validated.
 - Parsing scope: Python uses the standard-library AST; JavaScript/TypeScript, Shell, and systemd relationships are conservative and may be incomplete.
+
+## Changes Since Previous Map
+
+- Previous Git commit: `d0f4151d3fa82029245cf8c23ecc3d69919d312d`
+- Current Git commit: `548fb6aace14ff2067a945041d0dc53a8d935d8e`
+- Added: none
+- Changed: none
+- Removed: none
 
 ## Components
 
