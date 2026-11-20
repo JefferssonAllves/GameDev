@@ -19,3 +19,10 @@ Reabra o projeto no Codex para carregar as skills. A configuração dos servidor
 ## Pendências de origem
 
 `player-movement-2d` e `combat-movement` não foram encontradas com esses nomes exatos. Aguardam os links de origem; nenhuma skill de nome parecido foi instalada no lugar delas.
+
+
+## Skills locais de memória e contexto
+
+`project-memory`, `context-optimizer`, `session-handoff`, `dependency-navigator` e `memory-maintenance` foram escritas para este repositório, em português brasileiro. Não são cópias dos pacotes externos acima. Mantêm seleção automática normal por gatilho, com referências extensas carregadas somente quando necessárias.
+
+Consulte [o guia de uso e validação](../docs/skills/contexto-e-memoria.md). Não exigem novas dependências, configuração global ou servidor. Não operam em background nem garantem redução percentual de tokens.
