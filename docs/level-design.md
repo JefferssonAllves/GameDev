@@ -9,7 +9,7 @@ Abra `game/arena.tscn` no Godot e pressione **F6** para testar a arena. A cena t
 | Esquivar | Shift | B |
 | Voltar ao ponto inicial | R | Start |
 
-A arena usa um fundo panorâmico de 2172 × 724 px com escala uniforme. A janela abre em 1920 × 540 px e mostra toda a área jogável de uma vez. O recorte superior mantém o calçamento visível. Os controles estão documentados neste guia. O Capoeirista caminha no calçamento, entre y = 375 e y = 500. A banca física usada nos testes fica em `tests/banca.tscn`.
+A arena usa um fundo panorâmico de 2172 × 724 px com escala uniforme. A janela abre em 1920 × 640 px. A câmera fixa enquadra o fundo inteiro, de y = −100 a y = 540. Os controles estão documentados neste guia. O Capoeirista caminha no calçamento, entre y = 375 e y = 500. A banca física usada nos testes fica em `tests/banca.tscn`.
 
 Para trocar o fundo, substitua o WebP de `sprites/aleatoria/cenario/` pelo novo arquivo com o mesmo nome e execute a arena novamente. Ao iniciar pelo projeto local, a arena lê o WebP diretamente. A cena no editor e as exportações usam a textura importada pelo Godot.
 
