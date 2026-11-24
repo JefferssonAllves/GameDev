@@ -15,6 +15,9 @@ func _run() -> void:
 		return
 
 	var arena := scene.instantiate()
+	var stall := (load("res://tests/banca.tscn") as PackedScene).instantiate() as StaticBody2D
+	stall.position = Vector2(520, 460)
+	arena.get_node("World").add_child(stall)
 	root.add_child(arena)
 	var world := arena.get_node("World")
 	_check(world.get_children().filter(func(child): return child is CharacterBody2D).size() == 1,
@@ -43,7 +46,7 @@ func _run() -> void:
 	_check(sprite.animation == &"correr" and player.velocity.length() > 240.0, "Corrida acelera e toca a sequência de corrida")
 	Input.action_release("run")
 
-	player.position = Vector2(410, 370)
+	player.position = Vector2(410, 425)
 	await _ticks(75)
 	_check(absf(player.position.x - 445.0) < 0.3, "Obstáculo bloqueia a passagem")
 	Input.action_press("jump")
@@ -59,7 +62,7 @@ func _run() -> void:
 	Input.action_press("move_up")
 	await _ticks(110)
 	_check(player.position.x > 585, "É possível contornar o obstáculo")
-	_check(absf(player.position.y - 249.0) < 0.3, "Parede superior contém o jogador")
+	_check(absf(player.position.y - 384.0) < 0.3, "Parede superior contém o jogador")
 	Input.action_release("move_up")
 	Input.action_release("move_right")
 
@@ -75,7 +78,7 @@ func _run() -> void:
 	await _ticks(45)
 	_check(player.velocity.is_zero_approx(), "Esquiva termina sem deslize contínuo")
 
-	player.position = Vector2(425, 370)
+	player.position = Vector2(425, 425)
 	Input.action_press("dash")
 	await _ticks(12)
 	Input.action_release("dash")

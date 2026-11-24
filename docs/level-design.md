@@ -9,6 +9,8 @@ Abra `game/arena.tscn` no Godot e pressione **F6** para testar a arena. A cena t
 | Esquivar | Shift | B |
 | Voltar ao ponto inicial | R | Start |
 
+A arena usa um fundo panorâmico de 2172 × 724 px com escala uniforme. O recorte superior mantém o calçamento visível e a câmera percorre 1920 × 540 px, duas telas em largura. O Capoeirista caminha no calçamento, entre y = 375 e y = 500. A banca física usada nos testes fica em `tests/banca.tscn`.
+
 ## Montar uma fase no editor
 
 1. Duplique `game/arena.tscn` e abra a cópia. Mantenha o personagem diretamente sob `World`, que tem ordenação por Y.
@@ -17,7 +19,7 @@ Abra `game/arena.tscn` no Godot e pressione **F6** para testar a arena. A cena t
 4. Mantenha o início do jogador em uma área livre. Se mudar a largura da fase, ajuste `limit_left` e `limit_right` na câmera junto com as paredes laterais.
 5. Execute com **Debug → Visible Collision Shapes**. Teste a passagem pelos dois lados dos obstáculos e confira os corredores com a área dos pés do jogador. Na arena atual, o retângulo dos pés mede 30 × 18 px. O salto e a esquiva continuam respeitando os bloqueios da fase.
 
-A banca e o caixote demonstram a separação. É possível ocultar ou trocar seus nós `Visual` mantendo os polígonos físicos. A instância de `game/player.tscn` permite ajustar velocidade, aceleração, salto e esquiva pelo Inspetor.
+A banca do teste demonstra a separação. A instância de `game/player.tscn` permite ajustar velocidade, aceleração, salto e esquiva pelo Inspetor.
 
 ## NPC de teste
 
