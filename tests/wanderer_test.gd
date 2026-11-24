@@ -7,12 +7,10 @@ func _initialize() -> void:
 
 func _run() -> void:
 	var arena := (load("res://game/arena.tscn") as PackedScene).instantiate()
+	var wanderer := (load("res://game/wanderer.tscn") as PackedScene).instantiate() as CharacterBody2D
+	wanderer.position = Vector2(660, 455)
+	arena.get_node("World").add_child(wanderer)
 	root.add_child(arena)
-	var wanderer := arena.get_node_or_null("World/Wanderer") as CharacterBody2D
-	if wanderer == null:
-		push_error("A arena deve conter o NPC errante.")
-		quit(1)
-		return
 
 	var sprite := wanderer.get_node("Sprite") as AnimatedSprite2D
 	var start := wanderer.position

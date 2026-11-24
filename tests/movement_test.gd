@@ -16,7 +16,9 @@ func _run() -> void:
 
 	var arena := scene.instantiate()
 	root.add_child(arena)
-	arena.get_node("World/FireEnemy").set_physics_process(false)
+	var world := arena.get_node("World")
+	_check(world.get_children().filter(func(child): return child is CharacterBody2D).size() == 1,
+		"A arena começa apenas com o personagem principal")
 	var player := arena.get_node("World/Player") as CharacterBody2D
 	await _ticks(2)
 	var spawn := player.position
@@ -82,7 +84,9 @@ func _run() -> void:
 	Input.action_press("reset_arena")
 	await _ticks(2)
 	Input.action_release("reset_arena")
-	var enemy := arena.get_node("World/Enemy") as CharacterBody2D
+	var enemy := (load("res://game/enemy.tscn") as PackedScene).instantiate() as CharacterBody2D
+	enemy.add_to_group("capoeira_targets")
+	world.add_child(enemy)
 	enemy.set_physics_process(false)
 	enemy.position = spawn + Vector2(46, 0)
 	var enemy_start := enemy.position
