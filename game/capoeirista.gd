@@ -1,23 +1,83 @@
 extends Node2D
 
-const SHEET = preload("res://sprites/aleatoria/Sprite Sheet de Capoeira em Pixel Art.webp")
-# Cada fileira usa limites horizontais próprios para não capturar os rótulos.
-const REPOUSO := [202, 327, 454, 582, 706, 835, 964, 1091, 1197]
-const CORRIDA := [213, 360, 523, 680, 840, 1018, 1188, 1337, 1475]
-const ATAQUES := [187, 286, 394, 521, 640, 721, 802, 898, 1025, 1133, 1240, 1355, 1483, 1608, 1702, 1825, 1969, 2079, 2157]
-const SALTO := [217, 351, 506, 667, 822, 960, 1118, 1276, 1426, 1520]
-var rows := [
-	[&"repouso", 0, 146, REPOUSO, true, 8.0],
-	[&"correr", 298, 109, CORRIDA, true, 17.0],
-	[&"pular", 578, 130, SALTO, false, 18.0],
-	[&"meia_lua", 422, 128, ATAQUES.slice(0, 6), false, 10.0],
-	[&"armada", 422, 128, ATAQUES.slice(9, 15), false, 10.0],
-	[&"queixada", 422, 128, ATAQUES.slice(13), false, 10.0],
-	[&"chute_aereo", 422, 128, ATAQUES.slice(5, 10), false, 10.0],
-	[&"esquiva_frente", 578, 130, SALTO.slice(0, 4), false, 18.0],
-	[&"role", 578, 130, SALTO.slice(5), false, 18.0],
-	[&"au", 578, 130, SALTO, false, 14.0],
-	[&"queda", 578, 130, SALTO.slice(6), false, 6.0],
+const SHEET = preload("res://sprites/aleatoria/PRINCIPAL.png")
+# Regiões em pixels. Os rótulos da folha ficam fora dos quadros.
+const CLIPS := [
+	[&"repouso", true, 8.0, [
+		Rect2(6, 32, 173, 107),
+		Rect2(179, 32, 170, 107),
+		Rect2(349, 32, 168, 107),
+		Rect2(517, 32, 173, 107),
+		Rect2(690, 32, 170, 107),
+		Rect2(859, 32, 170, 107),
+		Rect2(1029, 32, 168, 107),
+		Rect2(1197, 32, 168, 107),
+		Rect2(1365, 32, 173, 107),
+		Rect2(6, 174, 173, 104),
+		Rect2(179, 174, 170, 104),
+		Rect2(349, 174, 168, 104),
+	]],
+	[&"correr", true, 17.0, [
+		Rect2(6, 746, 182, 101),
+		Rect2(189, 746, 179, 101),
+		Rect2(368, 746, 187, 101),
+		Rect2(555, 746, 189, 101),
+		Rect2(744, 746, 200, 101),
+	]],
+	[&"pular", false, 18.0, [
+		Rect2(445, 893, 187, 144),
+		Rect2(632, 893, 136, 144),
+		Rect2(1226, 880, 205, 157),
+		Rect2(768, 893, 229, 144),
+	]],
+	[&"meia_lua", false, 10.0, [
+		Rect2(106, 1075, 229, 195),
+		Rect2(334, 1075, 186, 195),
+		Rect2(520, 1075, 166, 195),
+		Rect2(686, 1075, 166, 195),
+	]],
+	[&"armada", false, 10.0, [
+		Rect2(334, 1075, 186, 195),
+		Rect2(520, 1075, 166, 195),
+		Rect2(686, 1075, 166, 195),
+		Rect2(853, 1075, 194, 195),
+	]],
+	[&"queixada", false, 10.0, [
+		Rect2(6, 440, 189, 106),
+		Rect2(195, 440, 205, 106),
+		Rect2(400, 440, 208, 106),
+		Rect2(106, 1075, 229, 195),
+		Rect2(334, 1075, 186, 195),
+	]],
+	[&"chute_aereo", false, 10.0, [
+		Rect2(632, 893, 136, 144),
+		Rect2(1226, 880, 205, 157),
+		Rect2(768, 893, 229, 144),
+		Rect2(334, 1075, 186, 195),
+	]],
+	[&"esquiva_frente", false, 18.0, [
+		Rect2(616, 440, 230, 106),
+		Rect2(846, 440, 216, 106),
+	]],
+	[&"role", false, 18.0, [
+		Rect2(189, 584, 168, 130),
+		Rect2(357, 584, 139, 130),
+		Rect2(496, 584, 126, 130),
+		Rect2(622, 584, 114, 130),
+	]],
+	[&"au", false, 14.0, [
+		Rect2(445, 893, 187, 144),
+		Rect2(632, 893, 136, 144),
+		Rect2(1226, 880, 205, 157),
+		Rect2(768, 893, 229, 144),
+	]],
+	[&"queda", false, 6.0, [
+		Rect2(8, 584, 181, 130),
+		Rect2(189, 584, 168, 130),
+		Rect2(357, 584, 139, 130),
+		Rect2(496, 584, 126, 130),
+		Rect2(622, 584, 114, 130),
+	]],
 ]
 
 @onready var sprite: AnimatedSprite2D = $Sprite
@@ -25,16 +85,15 @@ var rows := [
 func _ready() -> void:
 	var frames := SpriteFrames.new()
 	frames.remove_animation(&"default")
-	for row in rows:
-		var animation: StringName = row[0]
+	for clip in CLIPS:
+		var animation: StringName = clip[0]
 		frames.add_animation(animation)
-		frames.set_animation_loop(animation, row[4])
-		frames.set_animation_speed(animation, row[5])
-		var bounds: Array = row[3]
-		for index in range(bounds.size() - 1):
+		frames.set_animation_loop(animation, clip[1])
+		frames.set_animation_speed(animation, clip[2])
+		for region: Rect2 in clip[3]:
 			var texture := AtlasTexture.new()
 			texture.atlas = SHEET
-			texture.region = Rect2(bounds[index], row[1], bounds[index + 1] - bounds[index], row[2])
+			texture.region = region
 			texture.filter_clip = true
 			frames.add_frame(animation, texture)
 	sprite.sprite_frames = frames

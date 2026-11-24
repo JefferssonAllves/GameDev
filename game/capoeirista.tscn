@@ -2,9 +2,23 @@
 
 [ext_resource type="Script" path="res://game/capoeirista.gd" id="1"]
 
+[sub_resource type="Shader" id="ChromaKey"]
+code = "shader_type canvas_item;
+
+void fragment() {
+	vec3 texel = texture(TEXTURE, UV).rgb;
+	vec3 background = vec3(163.0, 73.0, 164.0) / 255.0;
+	COLOR.a *= step(0.006, distance(texel, background));
+}
+"
+
+[sub_resource type="ShaderMaterial" id="SpriteMaterial"]
+shader = SubResource("ChromaKey")
+
 [node name="Capoeirista" type="Node2D"]
 script = ExtResource("1")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
+material = SubResource("SpriteMaterial")
 scale = Vector2(0.77, 0.77)
