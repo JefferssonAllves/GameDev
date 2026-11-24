@@ -23,9 +23,12 @@ func _run() -> void:
 	_check(world.get_children().filter(func(child): return child is CharacterBody2D).size() == 1,
 		"A arena começa apenas com o personagem principal")
 	var player := arena.get_node("World/Player") as CharacterBody2D
+	var sprite := player.get_node("Visual/Sprite") as AnimatedSprite2D
+	var idle_texture := sprite.sprite_frames.get_frame_texture(&"repouso", 0)
+	_check(is_equal_approx(sprite.offset.y + idle_texture.get_height() / 2.0, 0.0),
+		"Os pés estão alinhados ao chão desde a pose inicial")
 	await _ticks(2)
 	var spawn := player.position
-	var sprite := player.get_node("Visual/Sprite") as AnimatedSprite2D
 	var idle_frame := sprite.frame
 	await _ticks(15)
 	_check(sprite.animation == &"repouso" and sprite.frame == idle_frame and player.position == spawn,

@@ -60,6 +60,7 @@ func _ready() -> void:
 	sprite.frame_changed.connect(_align_feet)
 	sprite.animation_changed.connect(_align_feet)
 	sprite.play(&"repouso")
+	_align_feet()
 
 
 func _fits_grid(image: Image) -> bool:
