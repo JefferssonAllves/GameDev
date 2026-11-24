@@ -1,17 +1,11 @@
 extends Node2D
 
-@onready var player: CharacterBody2D = $World/Player
-@onready var camera: Camera2D = $Camera2D
 @onready var backdrop: Sprite2D = $Backdrop
 
 
 func _ready() -> void:
 	_refresh_backdrop()
 	$NavigationRegion2D.bake_navigation_polygon(false)
-
-
-func _process(_delta: float) -> void:
-	camera.position.x = player.position.x
 
 
 func _refresh_backdrop() -> void:

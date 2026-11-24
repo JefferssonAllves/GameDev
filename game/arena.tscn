@@ -57,25 +57,3 @@ position = Vector2(260, 429)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("Walkable")
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(480, 270)
-limit_left = 0
-limit_top = 0
-limit_right = 1920
-limit_bottom = 540
-
-[node name="HUD" type="CanvasLayer" parent="."]
-
-[node name="Titulo" type="Label" parent="HUD"]
-offset_left = 28.0
-offset_top = 22.0
-theme_override_colors/font_color = Color(0.99, 0.82, 0.58, 1)
-theme_override_font_sizes/font_size = 26
-text = "Feira da Virada"
-
-[node name="Controles" type="Label" parent="HUD"]
-offset_left = 28.0
-offset_top = 60.0
-theme_override_font_sizes/font_size = 16
-text = "WASD / setas · Espaço salta · Shift esquiva · Ctrl corre · R reinicia\nJ ataque · K segundo golpe · L acrobacia"
