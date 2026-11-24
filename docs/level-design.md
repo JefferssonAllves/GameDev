@@ -48,6 +48,10 @@ O sprite usa escala uniforme de 0,32 para manter cerca de 100 px de altura, com 
 
 Os golpes empurram os inimigos próximos à frente. Um projétil de fogo no chão ativa a reação visual e interrompe o golpe atual. A arena ainda não tem sistema de vida.
 
+## HUD
+
+O painel de retrato, corações e moedas usa a imagem WebP em `sprites/aleatoria/teste/`. Ele fica fixo no canto superior esquerdo enquanto a câmera acompanha o jogador. Os valores fazem parte da arte e são estáticos.
+
 ## Teste de regressão
 
 Se o personagem sumir depois de um `git pull`, abra o projeto no editor e espere a importação terminar antes de jogar. Para automatizar a importação de recursos como `inimigo2.png` após atualizações pelo Git, ative os hooks seguindo o [README](../README.md). O PNG vem pelo Git, e o Godot gera a textura em `.godot/imported/` em cada máquina.

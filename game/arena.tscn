@@ -5,6 +5,13 @@
 
 [ext_resource type="Texture2D" path="res://sprites/aleatoria/cenario/Sprite Sheet de Capoeira em Pixel Art.webp" id="3"]
 
+[ext_resource type="Texture2D" path="res://sprites/aleatoria/teste/HUD de Personagem_ Retrato, Corações e Moedas.webp" id="4"]
+
+[sub_resource type="AtlasTexture" id="HudArt"]
+atlas = ExtResource("4")
+region = Rect2(0, 0, 1280, 724)
+filter_clip = true
+
 [sub_resource type="NavigationPolygon" id="Walkable"]
 outlines = Array[PackedVector2Array]([PackedVector2Array(20, 375, 1900, 375, 1900, 500, 20, 500)])
 parsed_geometry_type = 1
@@ -64,3 +71,16 @@ limit_left = 0
 limit_top = -100
 limit_right = 1920
 limit_bottom = 540
+
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="Painel" type="TextureRect" parent="HUD"]
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 272.0
+offset_bottom = 160.8
+mouse_filter = 2
+texture = SubResource("HudArt")
+expand_mode = 1
+stretch_mode = 4
