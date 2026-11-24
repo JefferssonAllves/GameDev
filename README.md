@@ -17,7 +17,7 @@ Espere o comando terminar antes de rodar o jogo. Se a importação falhar, o Git
 
 ## Arena de teste
 
-Abra `project.godot` e execute o projeto com **F6** na cena da arena ou **F5** para iniciar a cena principal. O [guia de level design](docs/level-design.md) tem os controles, o teste automatizado e as instruções para montar colisões antes da arte.
+Abra `project.godot` e execute o projeto com **F6** na cena da arena ou **F5** para abrir o menu inicial e selecionar **Jogar**. O [guia de level design](docs/level-design.md) tem os controles, o teste automatizado e as instruções para montar colisões antes da arte.
 
 O addon do Godot Editor MCP 2026.10.20.1 está versionado em `addons/godot_mcp/`, com a licença, e habilitado no projeto. Se a conexão falhar com a porta 9080 em uso, confira se outra sessão do Codex já está executando o servidor do Godot.
 

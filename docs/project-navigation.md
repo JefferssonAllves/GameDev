@@ -37,7 +37,7 @@ Atualizado em 2026-11-19. Este índice manual complementa o Project Map; não é
 
 ## Estado do jogo
 
-A cena principal é `game/arena.tscn`. O jogador e os obstáculos ficam sob `World`, com ordenação por Y. O movimento usa o chão em dois eixos e mantém a altura visual de salto separada da colisão. Consulte o guia da arena para controles e teste.
+A cena principal é `game/menu.tscn`. O botão **Jogar** abre `game/arena.tscn`. O jogador e os obstáculos ficam sob `World`, com ordenação por Y. O movimento usa o chão em dois eixos e mantém a altura visual de salto separada da colisão. Consulte o guia da arena para controles e teste.
 
 ## Limites de cobertura
 
