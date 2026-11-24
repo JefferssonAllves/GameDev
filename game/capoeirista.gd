@@ -18,7 +18,7 @@ const POSES := [
 ]
 # A folha não tem quadros próprios de combate, salto ou reação.
 const CLIPS := [
-	[&"repouso", true, 8.0, [0, 1, 2, 1]],
+	[&"repouso", false, 8.0, [0]],
 	[&"correr", true, 17.0, [3, 4, 5, 6, 7, 8, 9, 10, 11]],
 	[&"pular", false, 18.0, [4, 5, 8, 9]],
 	[&"meia_lua", false, 10.0, [0, 3, 4, 3, 0]],

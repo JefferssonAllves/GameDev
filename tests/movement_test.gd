@@ -28,8 +28,8 @@ func _run() -> void:
 	var sprite := player.get_node("Visual/Sprite") as AnimatedSprite2D
 	var idle_frame := sprite.frame
 	await _ticks(15)
-	_check(sprite.animation == &"repouso" and sprite.frame != idle_frame and player.position == spawn,
-		"Fileira de repouso animada sem deslocamento")
+	_check(sprite.animation == &"repouso" and sprite.frame == idle_frame and player.position == spawn,
+		"Pose de repouso fixa sem deslocamento")
 
 	Input.action_press("move_right")
 	Input.action_press("move_down")
@@ -65,6 +65,8 @@ func _run() -> void:
 	_check(absf(player.position.y - 384.0) < 0.3, "Parede superior contém o jogador")
 	Input.action_release("move_up")
 	Input.action_release("move_right")
+	await _ticks(25)
+	_check(sprite.animation == &"repouso" and sprite.frame == 0, "Ao parar, retorna à pose fixa")
 
 	Input.action_press("reset_arena")
 	await _ticks(2)
