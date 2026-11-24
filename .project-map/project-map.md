@@ -1,13 +1,13 @@
 # Project Map
 
-<!-- project-map: {"analyzer": "0.3.0", "generated_at": "2026-11-24T00:26:44+00:00", "git_commit": "9af8ee82c4fdc7c21185d76a8dcee7a993e7d0c3", "source_fingerprint": "d79366c467c46605cec9873c5347608f7a2333c68f4987c9b50adad276f9860e"} -->
+<!-- project-map: {"analyzer": "0.3.0", "generated_at": "2026-11-24T01:58:19+00:00", "git_commit": "3a76d6192af471adc2c21ea5cafd294130091a76", "source_fingerprint": "d79366c467c46605cec9873c5347608f7a2333c68f4987c9b50adad276f9860e"} -->
 This is a generated navigation index. Validate it before relying on it; read source files before editing. FRESH means the indexed files match, not that every repository file is covered.
 
 ## Snapshot
 
 - Analyzer: `0.3.0`
-- Generated (UTC): `2026-11-24T00:26:44+00:00`
-- Git commit: `9af8ee82c4fdc7c21185d76a8dcee7a993e7d0c3`
+- Generated (UTC): `2026-11-24T01:58:19+00:00`
+- Git commit: `3a76d6192af471adc2c21ea5cafd294130091a76`
 - Source fingerprint: `d79366c467c46605cec9873c5347608f7a2333c68f4987c9b50adad276f9860e`
 - Indexed files: `18`
 - Declared project versions: `none detected`
@@ -23,8 +23,8 @@ This is a generated navigation index. Validate it before relying on it; read sou
 
 ## Changes Since Previous Map
 
-- Previous Git commit: `568e3ba7d1678ffc7f18b757301542d46baba72d`
-- Current Git commit: `9af8ee82c4fdc7c21185d76a8dcee7a993e7d0c3`
+- Previous Git commit: `9af8ee82c4fdc7c21185d76a8dcee7a993e7d0c3`
+- Current Git commit: `3a76d6192af471adc2c21ea5cafd294130091a76`
 - Added: none
 - Changed: none
 - Removed: none

@@ -9,21 +9,25 @@ Abra `game/arena.tscn` no Godot e pressione **F6** para testar a arena. A cena t
 | Esquivar | Shift | B |
 | Voltar ao ponto inicial | R | Start |
 
+A arena usa um fundo panorâmico de 2172 × 724 px com escala uniforme. A janela independente abre sem moldura em 960 × 640 px, com tamanho fixo para preencher a área com o cenário. A câmera acompanha o jogador na horizontal, com duas telas ao longo dos 1920 px da fase. Na vertical, a câmera mostra o fundo inteiro, de y = −100 a y = 540. Os controles estão documentados neste guia. O Capoeirista caminha no calçamento, entre y = 375 e y = 500. A banca física usada nos testes fica em `tests/banca.tscn`.
+
+Para trocar o fundo, substitua o WebP de `sprites/aleatoria/cenario/` pelo novo arquivo com o mesmo nome e execute a arena novamente. Ao iniciar pelo projeto local, a arena lê o WebP diretamente. A cena no editor e as exportações usam a textura importada pelo Godot.
+
 ## Montar uma fase no editor
 
 1. Duplique `game/arena.tscn` e abra a cópia. Mantenha o personagem diretamente sob `World`, que tem ordenação por Y.
 2. Dentro de `World`, duplique uma parede ou obstáculo para criar um novo bloqueio. Cada bloqueio é um `StaticBody2D` na camada **Cenário** com um filho `CollisionPolygon2D`. Edite os pontos do polígono no viewport para desenhar a base que toca o chão.
 3. Para mobília que precisa ocultar ou revelar o jogador conforme sua posição, ponha a origem do corpo na borda frontal da base. A arte vai em `Visual`, filho desse corpo. Os pés do jogador e essa origem determinam o que aparece na frente. Para piso e fachadas de fundo, use `Backdrop`.
-4. Mantenha o início do jogador em uma área livre. Se mudar a largura da fase, ajuste `limit_left` e `limit_right` na câmera junto com as paredes laterais.
+4. Mantenha o início do jogador em uma área livre. Se mudar a largura da fase, ajuste os limites horizontais da câmera e o enquadramento do fundo junto com as paredes laterais.
 5. Execute com **Debug → Visible Collision Shapes**. Teste a passagem pelos dois lados dos obstáculos e confira os corredores com a área dos pés do jogador. Na arena atual, o retângulo dos pés mede 30 × 18 px. O salto e a esquiva continuam respeitando os bloqueios da fase.
 
-A banca e o caixote demonstram a separação. É possível ocultar ou trocar seus nós `Visual` mantendo os polígonos físicos. A instância de `game/player.tscn` permite ajustar velocidade, aceleração, salto e esquiva pelo Inspetor.
+A banca do teste demonstra a separação. A instância de `game/player.tscn` permite ajustar velocidade, aceleração, salto e esquiva pelo Inspetor.
 
 ## NPC de teste
 
 A cena `game/enemy.tscn` usa `sprites/aleatoria/inimigo.png` para repouso e caminhada. O NPC patrulha entre a posição inicial e o deslocamento `patrol_offset`. Ao detectar o jogador, segue um caminho pelo piso e para a cerca de 36 px. Ao perder o alvo de vista por distância, retorna à patrulha. A perseguição serve para testar movimento e ainda não aplica dano.
 
-A arena começa com um NPC próximo ao jogador, à esquerda e mais ao fundo, longe da banca. Use **F5** para abrir a cena principal. **F6** executa a cena selecionada, então selecione `game/arena.tscn` para ver jogador e inimigo juntos.
+A arena inicia apenas com o Capoeirista. As cenas dos NPCs continuam disponíveis para reutilização. Os testes de NPC instanciam seus próprios personagens.
 
 Para adicionar outro inimigo, instancie a cena diretamente sob `World`, informe o jogador em `target` e escolha um ponto de patrulha dentro da área navegável. Ao redesenhar o piso, ajuste o contorno do `NavigationPolygon` da raiz. Adicione os `StaticBody2D` que bloqueiam passagens ao grupo `navigation_obstacles`. A arena gera a malha a partir desse contorno e das colisões do grupo ao iniciar.
 
@@ -33,15 +37,16 @@ A cena `game/wanderer.tscn` usa a folha fornecida em `sprites/aleatoria/mario.pn
 
 O Nerd (`game/reader.tscn`) fica parado à direita da banca com o livro aberto. A animação de leitura inclina levemente a pose em torno dos pés e repete a cada 2,4 s. A folha `sprites/aleatoria/nerd.png` preserva os créditos de seus sprites originais e da edição no cabeçalho.
 
-O Capoeirista é o jogador. A folha `sprites/aleatoria/Sprite Sheet de Capoeira em Pixel Art.webp` fornece as poses de repouso, corrida, ataques e salto. Parado, o jogador usa a fileira de repouso. Qualquer deslocamento no chão usa a fileira de corrida, com cadência ajustada à velocidade. Segure **Ctrl / clique no analógico esquerdo** para correr. **Espaço / A** percorre a fileira de salto conforme a velocidade vertical. **Shift / B** esquiva e, com corrida, rola.
+O jogador usa a folha `sprites/aleatoria/PRINCIPAL.png`. A cena recorta 28 poses pela transparência do PNG em uma grade de quatro colunas e sete linhas. Ao iniciar o jogo localmente, o jogador lê o PNG atual. Preserve a grade ao substituir a folha. A exportação usa a textura empacotada. Parado, o jogador fica em uma pose fixa. Qualquer deslocamento no chão usa a sequência de corrida, com cadência ajustada à velocidade. Segure **Ctrl / clique no analógico esquerdo** para correr. **Espaço / A** usa quadros próprios de impulso, ápice e descida conforme a velocidade vertical e uma sequência breve ao tocar o chão. **Shift / B** esquiva e, com corrida, rola.
+O sprite usa escala uniforme de 0,32 para manter cerca de 100 px de altura, com os pés alinhados à origem do visual desde a primeira pose. J / X usa os novos quadros de chute, com preparação, extensão e recuperação. O empurrão acontece no quadro da perna estendida.
 
 | Ação | Teclado | Controle |
 | --- | --- | --- |
-| Chute. No ar, chute aéreo. Com corrida, chute giratório. | J | X |
-| Queixada com o efeito de empurrão da rasteira | K | Y |
-| Acrobacia com quadros do salto | L | LB |
+| Chute, com variantes em corrida e no ar | J | X |
+| Segundo golpe | K | Y |
+| Acrobacia com quadros aéreos | L | LB |
 
-Chute e queixada empurram os inimigos próximos à frente. Um projétil de fogo no chão ativa a queda e a levantada e interrompe o golpe atual. A arena ainda não tem sistema de vida.
+Os golpes empurram os inimigos próximos à frente. Um projétil de fogo no chão ativa a reação visual e interrompe o golpe atual. A arena ainda não tem sistema de vida.
 
 ## Teste de regressão
 

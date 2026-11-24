@@ -3,16 +3,10 @@
 [ext_resource type="PackedScene" path="res://game/player.tscn" id="1"]
 [ext_resource type="Script" path="res://game/arena.gd" id="2"]
 
-[ext_resource type="PackedScene" path="res://game/enemy.tscn" id="3"]
-
-[ext_resource type="PackedScene" path="res://game/fire_enemy.tscn" id="4"]
-
-[ext_resource type="PackedScene" path="res://game/wanderer.tscn" id="5"]
-
-[ext_resource type="PackedScene" path="res://game/reader.tscn" id="6"]
+[ext_resource type="Texture2D" path="res://sprites/aleatoria/cenario/Sprite Sheet de Capoeira em Pixel Art.webp" id="3"]
 
 [sub_resource type="NavigationPolygon" id="Walkable"]
-outlines = Array[PackedVector2Array]([PackedVector2Array(20, 240, 1580, 240, 1580, 500, 20, 500)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(20, 375, 1900, 375, 1900, 500, 20, 500)])
 parsed_geometry_type = 1
 source_geometry_mode = 2
 source_geometry_group_name = &"navigation_obstacles"
@@ -21,139 +15,52 @@ agent_radius = 18.0
 [node name="Arena" type="Node2D"]
 script = ExtResource("2")
 
-[node name="Backdrop" type="Node2D" parent="."]
-
-[node name="Fundo" type="Polygon2D" parent="Backdrop"]
-color = Color(0.14, 0.19, 0.23, 1)
-polygon = PackedVector2Array(0, 0, 1600, 0, 1600, 540, 0, 540)
-
-[node name="Fachada" type="Polygon2D" parent="Backdrop"]
-color = Color(0.22, 0.29, 0.34, 1)
-polygon = PackedVector2Array(0, 107, 1600, 107, 1600, 240, 0, 240)
-
-[node name="Piso" type="Polygon2D" parent="Backdrop"]
-color = Color(0.31, 0.36, 0.38, 1)
-polygon = PackedVector2Array(0, 240, 1600, 240, 1600, 500, 0, 500)
-
-[node name="MeioFio" type="Polygon2D" parent="Backdrop"]
-color = Color(0.47, 0.53, 0.51, 1)
-polygon = PackedVector2Array(0, 237, 1600, 237, 1600, 243, 0, 243)
-
-[node name="Linha0" type="Polygon2D" parent="Backdrop"]
-color = Color(0.37, 0.42, 0.44, 1)
-polygon = PackedVector2Array(0, 305, 1600, 305, 1600, 307, 0, 307)
-
-[node name="Linha1" type="Polygon2D" parent="Backdrop"]
-color = Color(0.37, 0.42, 0.44, 1)
-polygon = PackedVector2Array(0, 370, 1600, 370, 1600, 372, 0, 372)
-
-[node name="Linha2" type="Polygon2D" parent="Backdrop"]
-color = Color(0.37, 0.42, 0.44, 1)
-polygon = PackedVector2Array(0, 435, 1600, 435, 1600, 437, 0, 437)
+[node name="Backdrop" type="Sprite2D" parent="."]
+position = Vector2(0, -100)
+scale = Vector2(0.8839779, 0.8839779)
+texture = ExtResource("3")
+centered = false
 
 [node name="World" type="Node2D" parent="."]
 y_sort_enabled = true
 
 [node name="Norte" type="StaticBody2D" parent="World"]
-position = Vector2(800, 230)
+position = Vector2(960, 365)
 collision_mask = 0
 
 [node name="Colisao" type="CollisionPolygon2D" parent="World/Norte"]
-polygon = PackedVector2Array(-800, -10, 800, -10, 800, 10, -800, 10)
+polygon = PackedVector2Array(-960, -10, 960, -10, 960, 10, -960, 10)
 
 [node name="Sul" type="StaticBody2D" parent="World"]
-position = Vector2(800, 510)
+position = Vector2(960, 510)
 collision_mask = 0
 
 [node name="Colisao" type="CollisionPolygon2D" parent="World/Sul"]
-polygon = PackedVector2Array(-800, -10, 800, -10, 800, 10, -800, 10)
+polygon = PackedVector2Array(-960, -10, 960, -10, 960, 10, -960, 10)
 
 [node name="Oeste" type="StaticBody2D" parent="World"]
-position = Vector2(10, 370)
+position = Vector2(10, 437.5)
 collision_mask = 0
 
 [node name="Colisao" type="CollisionPolygon2D" parent="World/Oeste"]
-polygon = PackedVector2Array(-10, -130, 10, -130, 10, 130, -10, 130)
+polygon = PackedVector2Array(-10, -62.5, 10, -62.5, 10, 62.5, -10, 62.5)
 
 [node name="Leste" type="StaticBody2D" parent="World"]
-position = Vector2(1590, 370)
+position = Vector2(1910, 437.5)
 collision_mask = 0
 
 [node name="Colisao" type="CollisionPolygon2D" parent="World/Leste"]
-polygon = PackedVector2Array(-10, -130, 10, -130, 10, 130, -10, 130)
-
-[node name="Banca" type="StaticBody2D" parent="World" groups=["navigation_obstacles"]]
-position = Vector2(520, 402)
-collision_mask = 0
-
-[node name="Colisao" type="CollisionPolygon2D" parent="World/Banca"]
-polygon = PackedVector2Array(-60, -56, 60, -56, 60, 0, -60, 0)
-
-[node name="Visual" type="Node2D" parent="World/Banca"]
-
-[node name="Frente" type="Polygon2D" parent="World/Banca/Visual"]
-color = Color(0.65, 0.35, 0.23, 1)
-polygon = PackedVector2Array(-60, -56, 60, -56, 60, 0, -60, 0)
-
-[node name="Tampo" type="Polygon2D" parent="World/Banca/Visual"]
-color = Color(0.79, 0.62, 0.40, 1)
-polygon = PackedVector2Array(-60, -56, 60, -56, 47, -83, -47, -83)
-
-[node name="Caixote" type="StaticBody2D" parent="World" groups=["navigation_obstacles"]]
-position = Vector2(1040, 444)
-collision_mask = 0
-
-[node name="Colisao" type="CollisionPolygon2D" parent="World/Caixote"]
-polygon = PackedVector2Array(-52, -64, 52, -64, 52, 0, -52, 0)
-
-[node name="Visual" type="Node2D" parent="World/Caixote"]
-
-[node name="Frente" type="Polygon2D" parent="World/Caixote/Visual"]
-color = Color(0.56, 0.45, 0.26, 1)
-polygon = PackedVector2Array(-52, -64, 52, -64, 52, 0, -52, 0)
-
-[node name="Tampo" type="Polygon2D" parent="World/Caixote/Visual"]
-color = Color(0.79, 0.62, 0.40, 1)
-polygon = PackedVector2Array(-52, -64, 52, -64, 39, -91, -39, -91)
+polygon = PackedVector2Array(-10, -62.5, 10, -62.5, 10, 62.5, -10, 62.5)
 
 [node name="Player" parent="World" instance=ExtResource("1")]
-position = Vector2(260, 370)
-
-[node name="Enemy" parent="World" node_paths=PackedStringArray("target") groups=["capoeira_targets"] instance=ExtResource("3")]
-position = Vector2(145, 335)
-target = NodePath("../Player")
-
-[node name="FireEnemy" parent="World" node_paths=PackedStringArray("target") groups=["capoeira_targets"] instance=ExtResource("4")]
-position = Vector2(420, 325)
-target = NodePath("../Player")
-
-[node name="Wanderer" parent="World" instance=ExtResource("5")]
-position = Vector2(660, 455)
-
-[node name="Reader" parent="World" instance=ExtResource("6")]
-position = Vector2(737, 295)
+position = Vector2(260, 429)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("Walkable")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(480, 270)
+position = Vector2(480, 220)
 limit_left = 0
-limit_top = 0
-limit_right = 1600
+limit_top = -100
+limit_right = 1920
 limit_bottom = 540
-
-[node name="HUD" type="CanvasLayer" parent="."]
-
-[node name="Titulo" type="Label" parent="HUD"]
-offset_left = 28.0
-offset_top = 22.0
-theme_override_colors/font_color = Color(0.99, 0.82, 0.58, 1)
-theme_override_font_sizes/font_size = 26
-text = "Feira da Virada"
-
-[node name="Controles" type="Label" parent="HUD"]
-offset_left = 28.0
-offset_top = 60.0
-theme_override_font_sizes/font_size = 16
-text = "WASD / setas · Espaço salta · Shift esquiva · Ctrl corre · R reinicia\nJ chute · K queixada · L acrobacia"

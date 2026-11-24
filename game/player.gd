@@ -17,6 +17,7 @@ var dash_direction := Vector2.ZERO
 var dash_remaining := 0.0
 var recovery_remaining := 0.0
 var jump_height := 0.0
+var landing_remaining := 0.0
 var vertical_speed := 0.0
 var move_clip: StringName = &""
 var strike_pending := false
@@ -52,13 +53,16 @@ func _physics_process(delta: float) -> void:
 		var desired := direction * speed if move_clip == &"" or jump_height > 0.0 else Vector2.ZERO
 		velocity = velocity.move_toward(desired, acceleration * delta)
 
+	landing_remaining = maxf(landing_remaining - delta, 0.0)
 	if Input.is_action_just_pressed("jump") and jump_height <= 0.0 and dash_remaining <= 0.0 and move_clip == &"":
+		landing_remaining = 0.0
 		vertical_speed = jump_speed
 	if jump_height > 0.0 or vertical_speed > 0.0:
 		vertical_speed -= jump_gravity * delta
 		jump_height = maxf(jump_height + vertical_speed * delta, 0.0)
 		if jump_height == 0.0:
 			vertical_speed = 0.0
+			landing_remaining = 0.10
 
 	visual.position.y = -jump_height
 	visual.scale.x = facing
@@ -98,14 +102,23 @@ func _update_sprite() -> void:
 	if jump_height > 0.0:
 		sprite.play(&"pular")
 		sprite.pause()
-		var last := sprite.sprite_frames.get_frame_count(&"pular") - 1
-		var progress := clampf((1.0 - vertical_speed / jump_speed) * 0.5, 0.0, 1.0)
-		sprite.frame = roundi(progress * last)
+		var relative_speed := vertical_speed / jump_speed
+		if relative_speed > 0.30:
+			sprite.frame = 0
+		elif relative_speed >= -0.25:
+			sprite.frame = 1
+		elif relative_speed >= -0.72:
+			sprite.frame = 2
+		else:
+			sprite.frame = 3
 	elif dash_remaining > 0.0:
 		sprite.play(dodge_clip)
 		sprite.pause()
 		var last := sprite.sprite_frames.get_frame_count(dodge_clip) - 1
 		sprite.frame = clampi(roundi((1.0 - dash_remaining / dash_duration) * last), 0, last)
+	elif landing_remaining > 0.0:
+		sprite.speed_scale = 1.0
+		sprite.play(&"aterrissar")
 	else:
 		var speed := get_real_velocity().length()
 		var clip: StringName = &"correr" if speed > 1.0 else &"repouso"
@@ -128,6 +141,7 @@ func _reset() -> void:
 	dash_remaining = 0.0
 	recovery_remaining = 0.0
 	jump_height = 0.0
+	landing_remaining = 0.0
 	vertical_speed = 0.0
 	visual.position.y = 0.0
 	visual.scale.x = 1.0

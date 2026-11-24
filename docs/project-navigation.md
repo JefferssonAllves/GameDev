@@ -10,11 +10,11 @@ Atualizado em 2026-11-19. Este índice manual complementa o Project Map; não é
 | `.project-map/project-map.md` | Mapa gerado dos arquivos suportados pelo Project Map. | Após validar o manifesto, para localizar código e relações indexados. |
 | `.project-map/project-map.manifest.json` | Hashes e cache do analisador. | Pelo script; não editar manualmente. |
 | `project.godot` | Configuração atual do projeto: cena principal, ações de entrada, camadas de colisão, renderizador Compatibility e plugin do editor. | Antes de alterar configuração ou diagnosticar compatibilidade; a versão declarada não comprova a versão do editor instalado. |
-| `game/arena.tscn`, `game/arena.gd` | Arena de teste, blocos de colisão e câmera lateral. | Montagem e teste de fases. |
+| `game/arena.tscn`, `game/arena.gd` | Arena com fundo panorâmico, limites de colisão e câmera lateral com enquadramento vertical completo. | Montagem e teste de fases. |
 | `game/player.tscn`, `game/player.gd` | Personagem reutilizável, movimento no chão e colisão dos pés. | Alterações de movimento e apresentação. |
 | `game/enemy.tscn`, `game/enemy.gd` | NPC de patrulha e perseguição pelo piso navegável, animado com `sprites/aleatoria/inimigo.png`. | Ajustes de navegação, detecção e animações do inimigo. |
 | `game/wanderer.tscn`, `game/wanderer.gd`, `tests/wanderer_test.gd` | NPC neutro com destinos aleatórios, pausas e animações. | Ajustes no movimento e visual do NPC errante. |
-| `game/capoeirista.tscn`, `game/capoeirista.gd` | Visual do jogador com as sequências do atlas de capoeira. | Ajustes de poses e reprodução. |
+| `game/capoeirista.tscn`, `game/capoeirista.gd` | Visual do jogador com as sequências da folha `sprites/aleatoria/PRINCIPAL.png`. | Ajustes de poses e reprodução. |
 | `game/reader.tscn` | NPC parado com livro aberto e animação de leitura. | Ajustes de posição e animação do leitor. |
 | `tests/enemy_test.gd` | Teste de patrulha, perseguição em torno da banca e animações. | Alterações no NPC ou na navegação da arena. |
 | `game/fire_enemy.tscn`, `game/fire_enemy.gd`, `game/fireball.gd` | Segundo NPC e projétil de fogo. | Ajustes de ataque à distância. |
@@ -37,7 +37,7 @@ Atualizado em 2026-11-19. Este índice manual complementa o Project Map; não é
 
 ## Estado do jogo
 
-A cena principal é `game/menu.tscn`. A arte do menu está em `sprites/aleatoria/teste/Tela de jogo colorida GAMEDEV.png`. A área interativa sobre **Jogar** abre `game/arena.tscn`. O jogador e os obstáculos ficam sob `World`, com ordenação por Y. O movimento usa o chão em dois eixos e mantém a altura visual de salto separada da colisão. Consulte o guia da arena para controles e teste.
+A cena principal é `game/menu.tscn`. A arte do menu está em `sprites/aleatoria/teste/Tela de jogo colorida GAMEDEV.png`. A arte mantém sua proporção na janela de 960 × 640. A área interativa sobre **Jogar** abre `game/arena.tscn`. O jogador e os obstáculos ficam sob `World`, com ordenação por Y. O movimento usa o chão em dois eixos e mantém a altura visual de salto separada da colisão. Consulte o guia da arena para controles e teste.
 
 ## Limites de cobertura
 
