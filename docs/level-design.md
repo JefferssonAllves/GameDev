@@ -37,8 +37,8 @@ A cena `game/wanderer.tscn` usa a folha fornecida em `sprites/aleatoria/mario.pn
 
 O Nerd (`game/reader.tscn`) fica parado à direita da banca com o livro aberto. A animação de leitura inclina levemente a pose em torno dos pés e repete a cada 2,4 s. A folha `sprites/aleatoria/nerd.png` preserva os créditos de seus sprites originais e da edição no cabeçalho.
 
-O jogador usa a folha `sprites/aleatoria/PRINCIPAL.png`. A cena recorta 12 poses em duas linhas e usa a transparência do PNG. Parado, o jogador fica em uma pose fixa. Qualquer deslocamento no chão usa a sequência de corrida, com cadência ajustada à velocidade. Segure **Ctrl / clique no analógico esquerdo** para correr. **Espaço / A** usa poses aéreas conforme a velocidade vertical. **Shift / B** esquiva e, com corrida, rola.
-O sprite usa escala uniforme de 0,32 para manter cerca de 100 px de altura, com os pés alinhados à origem do visual. Salto, golpes e reações reaproveitam poses da folha.
+O jogador usa a folha `sprites/aleatoria/PRINCIPAL.png`. A cena recorta 20 poses em cinco linhas e usa a transparência do PNG. Parado, o jogador fica em uma pose fixa. Qualquer deslocamento no chão usa a sequência de corrida, com cadência ajustada à velocidade. Segure **Ctrl / clique no analógico esquerdo** para correr. **Espaço / A** usa quadros próprios de impulso, ápice e descida conforme a velocidade vertical e uma sequência breve ao tocar o chão. **Shift / B** esquiva e, com corrida, rola.
+O sprite usa escala uniforme de 0,32 para manter cerca de 100 px de altura, com os pés alinhados à origem do visual. Golpes e reações reaproveitam poses terrestres da folha.
 
 | Ação | Teclado | Controle |
 | --- | --- | --- |

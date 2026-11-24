@@ -53,11 +53,20 @@ func _run() -> void:
 	await _ticks(5)
 	_check(player.get_node("Visual").position.y < 0.0, "Salto desloca o visual")
 	_check(absf(player.position.x - 445.0) < 0.3, "Salto preserva a colisão dos pés")
-	var rise_frame := sprite.frame
-	_check(sprite.animation == &"pular", "Subida usa pose aérea")
+	_check(sprite.animation == &"pular" and sprite.frame == 0, "Subida usa o quadro de impulso")
+	var takeoff := sprite.sprite_frames.get_frame_texture(&"pular", 0) as AtlasTexture
+	_check(takeoff.region.position.y >= 978, "Salto usa arte da fileira aérea")
 	Input.action_release("jump")
-	await _ticks(18)
-	_check(player.get_node("Visual").position.y < 0.0 and sprite.frame != rise_frame, "Descida usa outra pose aérea")
+	await _ticks(12)
+	_check(sprite.animation == &"pular" and sprite.frame == 1, "Ápice usa a pose recolhida")
+	await _ticks(8)
+	_check(player.get_node("Visual").position.y < 0.0 and sprite.frame == 2, "Descida prepara o pouso")
+	await _ticks(10)
+	_check(player.get_node("Visual").position.y == 0.0 and sprite.animation == &"aterrissar",
+		"Pouso usa a sequência de aterrissagem no contato com o chão")
+	await _ticks(8)
+	_check(sprite.animation == &"repouso" and sprite.frame == 0,
+		"Após o pouso, o visual volta à pose fixa")
 
 	Input.action_press("move_up")
 	await _ticks(110)
