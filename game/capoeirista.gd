@@ -4,25 +4,33 @@ const SHEET = preload("res://sprites/aleatoria/PRINCIPAL.png")
 # Recortes da folha transparente, com a borda inferior de cada pose nos pés.
 const POSES := [
 	Rect2(1, 1, 186, 309),
-	Rect2(220, 1, 188, 309),
-	Rect2(439, 1, 189, 309),
-	Rect2(658, 1, 195, 309),
-	Rect2(1, 327, 191, 305),
-	Rect2(220, 327, 192, 308),
-	Rect2(439, 327, 178, 310),
-	Rect2(658, 327, 195, 308),
-	Rect2(1, 653, 192, 307),
-	Rect2(220, 653, 189, 305),
-	Rect2(439, 653, 181, 307),
-	Rect2(658, 653, 178, 310),
-	Rect2(1, 980, 201, 282),
-	Rect2(220, 979, 208, 288),
-	Rect2(439, 980, 204, 302),
-	Rect2(658, 979, 216, 324),
-	Rect2(1, 1305, 179, 305),
-	Rect2(220, 1305, 177, 305),
-	Rect2(439, 1306, 205, 294),
-	Rect2(658, 1305, 216, 289),
+	Rect2(294, 1, 188, 309),
+	Rect2(587, 1, 189, 309),
+	Rect2(880, 1, 195, 309),
+	Rect2(1, 358, 191, 305),
+	Rect2(294, 358, 192, 308),
+	Rect2(587, 358, 178, 310),
+	Rect2(880, 358, 195, 308),
+	Rect2(1, 715, 192, 307),
+	Rect2(294, 715, 189, 305),
+	Rect2(587, 715, 181, 307),
+	Rect2(880, 715, 178, 310),
+	Rect2(1, 1073, 201, 282),
+	Rect2(294, 1072, 208, 288),
+	Rect2(587, 1073, 204, 302),
+	Rect2(880, 1072, 216, 324),
+	Rect2(1, 1429, 179, 305),
+	Rect2(294, 1429, 177, 305),
+	Rect2(587, 1430, 205, 294),
+	Rect2(880, 1429, 216, 289),
+	Rect2(1, 1786, 291, 354),
+	Rect2(294, 1786, 232, 355),
+	Rect2(587, 1786, 222, 351),
+	Rect2(880, 1787, 214, 344),
+	Rect2(1, 2144, 205, 346),
+	Rect2(294, 2144, 207, 348),
+	Rect2(587, 2144, 214, 343),
+	Rect2(880, 2143, 216, 339),
 ]
 
 const CLIPS := [
@@ -30,10 +38,10 @@ const CLIPS := [
 	[&"correr", true, 17.0, [3, 4, 5, 6, 7, 8, 9, 10, 11]],
 	[&"pular", false, 18.0, [12, 13, 14, 15]],
 	[&"aterrissar", false, 24.0, [19, 18, 16]],
-	[&"meia_lua", false, 10.0, [0, 3, 4, 3, 0]],
-	[&"armada", false, 10.0, [3, 4, 5, 6, 0]],
+	[&"meia_lua", false, 14.0, [27, 26, 23, 22, 20, 21, 24, 25]],
+	[&"armada", false, 16.0, [26, 23, 22, 20, 21, 24, 25]],
 	[&"queixada", false, 10.0, [0, 7, 8, 7, 0]],
-	[&"chute_aereo", false, 10.0, [4, 5, 8, 9]],
+	[&"chute_aereo", false, 16.0, [12, 23, 20, 21, 14]],
 	[&"esquiva_frente", false, 18.0, [3, 4, 5]],
 	[&"role", false, 18.0, [7, 8, 9, 10]],
 	[&"au", false, 14.0, [4, 5, 8, 9]],
@@ -63,6 +71,8 @@ func _ready() -> void:
 
 
 func _align_feet() -> void:
-	var texture := sprite.sprite_frames.get_frame_texture(sprite.animation, sprite.frame)
+	var texture := sprite.sprite_frames.get_frame_texture(sprite.animation, sprite.frame) as AtlasTexture
 	if texture != null:
+		# O quadro estendido inclui o rastro à frente. Compense a largura para apoiar o pé.
+		sprite.offset.x = 38.0 if texture.region == POSES[20] else 0.0
 		sprite.offset.y = -texture.get_height() / 2.0

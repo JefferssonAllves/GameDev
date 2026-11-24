@@ -55,7 +55,7 @@ func _run() -> void:
 	_check(absf(player.position.x - 445.0) < 0.3, "Salto preserva a colisão dos pés")
 	_check(sprite.animation == &"pular" and sprite.frame == 0, "Subida usa o quadro de impulso")
 	var takeoff := sprite.sprite_frames.get_frame_texture(&"pular", 0) as AtlasTexture
-	_check(takeoff.region.position.y >= 978, "Salto usa arte da fileira aérea")
+	_check(takeoff.region.position.y == 1073, "Salto usa arte da fileira aérea")
 	Input.action_release("jump")
 	await _ticks(12)
 	_check(sprite.animation == &"pular" and sprite.frame == 1, "Ápice usa a pose recolhida")
@@ -108,6 +108,10 @@ func _run() -> void:
 	await _ticks(3)
 	Input.action_release("kick")
 	_check(sprite.animation == &"meia_lua", "Chute toca a sequência de ataque")
+	var kick_frames := sprite.sprite_frames.get_frame_count(&"meia_lua")
+	var impact := sprite.sprite_frames.get_frame_texture(&"meia_lua", kick_frames / 2) as AtlasTexture
+	_check(impact.region == Rect2(1, 1786, 291, 354), "Impacto coincide com a pose de perna estendida")
+	_check(enemy.position == enemy_start, "Preparação do chute ainda não empurra o inimigo")
 	await _ticks(30)
 	_check(enemy.position.x > enemy_start.x, "Chute empurra um inimigo próximo à frente")
 
