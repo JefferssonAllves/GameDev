@@ -38,7 +38,7 @@ A cena `game/wanderer.tscn` usa a folha fornecida em `sprites/aleatoria/mario.pn
 O Nerd (`game/reader.tscn`) fica parado à direita da banca com o livro aberto. A animação de leitura inclina levemente a pose em torno dos pés e repete a cada 2,4 s. A folha `sprites/aleatoria/nerd.png` preserva os créditos de seus sprites originais e da edição no cabeçalho.
 
 O Capoeirista é o jogador. A folha `sprites/aleatoria/Sprite Sheet de Capoeira em Pixel Art.webp` fornece as poses de repouso, corrida, ataques e salto. Parado, o jogador usa a fileira de repouso. Qualquer deslocamento no chão usa a fileira de corrida, com cadência ajustada à velocidade. Segure **Ctrl / clique no analógico esquerdo** para correr. **Espaço / A** percorre a fileira de salto conforme a velocidade vertical. **Shift / B** esquiva e, com corrida, rola.
-O sprite é exibido na escala uniforme de 0,55, com os pés alinhados à origem do visual.
+O sprite é exibido na escala uniforme de 0,77, com os pés alinhados à origem do visual.
 
 | Ação | Teclado | Controle |
 | --- | --- | --- |
