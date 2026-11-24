@@ -1,83 +1,34 @@
 extends Node2D
 
 const SHEET = preload("res://sprites/aleatoria/PRINCIPAL.png")
-# Regiões em pixels. Os rótulos da folha ficam fora dos quadros.
+# Recortes da folha transparente, com a borda inferior de cada pose nos pés.
+const POSES := [
+	Rect2(1, 1, 186, 309),
+	Rect2(201, 1, 187, 309),
+	Rect2(399, 1, 189, 309),
+	Rect2(598, 1, 195, 309),
+	Rect2(797, 1, 191, 305),
+	Rect2(996, 1, 192, 308),
+	Rect2(1195, 2, 178, 310),
+	Rect2(1, 313, 194, 308),
+	Rect2(200, 314, 189, 305),
+	Rect2(399, 314, 181, 307),
+	Rect2(598, 313, 192, 307),
+	Rect2(797, 314, 178, 310),
+]
+# A folha não tem quadros próprios de combate, salto ou reação.
 const CLIPS := [
-	[&"repouso", true, 8.0, [
-		Rect2(6, 32, 173, 107),
-		Rect2(179, 32, 170, 107),
-		Rect2(349, 32, 168, 107),
-		Rect2(517, 32, 173, 107),
-		Rect2(690, 32, 170, 107),
-		Rect2(859, 32, 170, 107),
-		Rect2(1029, 32, 168, 107),
-		Rect2(1197, 32, 168, 107),
-		Rect2(1365, 32, 173, 107),
-		Rect2(6, 174, 173, 104),
-		Rect2(179, 174, 170, 104),
-		Rect2(349, 174, 168, 104),
-	]],
-	[&"correr", true, 17.0, [
-		Rect2(6, 746, 182, 101),
-		Rect2(189, 746, 179, 101),
-		Rect2(368, 746, 187, 101),
-		Rect2(555, 746, 189, 101),
-		Rect2(744, 746, 200, 101),
-	]],
-	[&"pular", false, 18.0, [
-		Rect2(445, 893, 187, 144),
-		Rect2(632, 893, 136, 144),
-		Rect2(1226, 880, 205, 157),
-		Rect2(768, 893, 229, 144),
-	]],
-	[&"meia_lua", false, 10.0, [
-		Rect2(106, 1075, 229, 195),
-		Rect2(334, 1075, 186, 195),
-		Rect2(520, 1075, 166, 195),
-		Rect2(686, 1075, 166, 195),
-	]],
-	[&"armada", false, 10.0, [
-		Rect2(334, 1075, 186, 195),
-		Rect2(520, 1075, 166, 195),
-		Rect2(686, 1075, 166, 195),
-		Rect2(853, 1075, 194, 195),
-	]],
-	[&"queixada", false, 10.0, [
-		Rect2(6, 440, 189, 106),
-		Rect2(195, 440, 205, 106),
-		Rect2(400, 440, 208, 106),
-		Rect2(106, 1075, 229, 195),
-		Rect2(334, 1075, 186, 195),
-	]],
-	[&"chute_aereo", false, 10.0, [
-		Rect2(632, 893, 136, 144),
-		Rect2(1226, 880, 205, 157),
-		Rect2(768, 893, 229, 144),
-		Rect2(334, 1075, 186, 195),
-	]],
-	[&"esquiva_frente", false, 18.0, [
-		Rect2(616, 440, 230, 106),
-		Rect2(846, 440, 216, 106),
-	]],
-	[&"role", false, 18.0, [
-		Rect2(189, 584, 168, 130),
-		Rect2(357, 584, 139, 130),
-		Rect2(496, 584, 126, 130),
-		Rect2(622, 584, 114, 130),
-	]],
-	[&"au", false, 14.0, [
-		Rect2(445, 893, 187, 144),
-		Rect2(632, 893, 136, 144),
-		Rect2(1226, 880, 205, 157),
-		Rect2(768, 893, 229, 144),
-	]],
-	[&"queda", false, 6.0, [
-		Rect2(8, 584, 181, 130),
-		Rect2(189, 584, 168, 130),
-		Rect2(357, 584, 139, 130),
-		Rect2(496, 584, 126, 130),
-		Rect2(622, 584, 114, 130),
-	]],
+	[&"repouso", true, 8.0, [0, 1, 2, 1]],
+	[&"correr", true, 17.0, [3, 4, 5, 6, 7, 8, 9, 10, 11]],
+	[&"pular", false, 18.0, [4, 5, 8, 9]],
+	[&"meia_lua", false, 10.0, [0, 3, 4, 3, 0]],
+	[&"armada", false, 10.0, [3, 4, 5, 6, 0]],
+	[&"queixada", false, 10.0, [0, 7, 8, 7, 0]],
+	[&"chute_aereo", false, 10.0, [4, 5, 8, 9]],
+	[&"esquiva_frente", false, 18.0, [3, 4, 5]],
+	[&"role", false, 18.0, [7, 8, 9, 10]],
+	[&"au", false, 14.0, [4, 5, 8, 9]],
+	[&"queda", false, 6.0, [8, 7, 0]],
 ]
 
 @onready var sprite: AnimatedSprite2D = $Sprite
@@ -90,10 +41,10 @@ func _ready() -> void:
 		frames.add_animation(animation)
 		frames.set_animation_loop(animation, clip[1])
 		frames.set_animation_speed(animation, clip[2])
-		for region: Rect2 in clip[3]:
+		for pose: int in clip[3]:
 			var texture := AtlasTexture.new()
 			texture.atlas = SHEET
-			texture.region = region
+			texture.region = POSES[pose]
 			texture.filter_clip = true
 			frames.add_frame(animation, texture)
 	sprite.sprite_frames = frames
