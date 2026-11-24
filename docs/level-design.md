@@ -9,7 +9,7 @@ Abra `game/arena.tscn` no Godot e pressione **F6** para testar a arena. A cena t
 | Esquivar | Shift | B |
 | Voltar ao ponto inicial | R | Start |
 
-A arena usa um fundo panorâmico de 2172 × 724 px com escala uniforme. A janela abre em 1920 × 640 px. A câmera fixa enquadra o fundo inteiro, de y = −100 a y = 540. Os controles estão documentados neste guia. O Capoeirista caminha no calçamento, entre y = 375 e y = 500. A banca física usada nos testes fica em `tests/banca.tscn`.
+A arena usa um fundo panorâmico de 2172 × 724 px com escala uniforme. A janela abre em 960 × 640 px. A câmera acompanha o jogador na horizontal, com duas telas ao longo dos 1920 px da fase. Na vertical, a câmera mostra o fundo inteiro, de y = −100 a y = 540. Os controles estão documentados neste guia. O Capoeirista caminha no calçamento, entre y = 375 e y = 500. A banca física usada nos testes fica em `tests/banca.tscn`.
 
 Para trocar o fundo, substitua o WebP de `sprites/aleatoria/cenario/` pelo novo arquivo com o mesmo nome e execute a arena novamente. Ao iniciar pelo projeto local, a arena lê o WebP diretamente. A cena no editor e as exportações usam a textura importada pelo Godot.
 
@@ -18,7 +18,7 @@ Para trocar o fundo, substitua o WebP de `sprites/aleatoria/cenario/` pelo novo 
 1. Duplique `game/arena.tscn` e abra a cópia. Mantenha o personagem diretamente sob `World`, que tem ordenação por Y.
 2. Dentro de `World`, duplique uma parede ou obstáculo para criar um novo bloqueio. Cada bloqueio é um `StaticBody2D` na camada **Cenário** com um filho `CollisionPolygon2D`. Edite os pontos do polígono no viewport para desenhar a base que toca o chão.
 3. Para mobília que precisa ocultar ou revelar o jogador conforme sua posição, ponha a origem do corpo na borda frontal da base. A arte vai em `Visual`, filho desse corpo. Os pés do jogador e essa origem determinam o que aparece na frente. Para piso e fachadas de fundo, use `Backdrop`.
-4. Mantenha o início do jogador em uma área livre. Se mudar a largura da fase, ajuste a largura da viewport e o enquadramento do fundo junto com as paredes laterais.
+4. Mantenha o início do jogador em uma área livre. Se mudar a largura da fase, ajuste os limites horizontais da câmera e o enquadramento do fundo junto com as paredes laterais.
 5. Execute com **Debug → Visible Collision Shapes**. Teste a passagem pelos dois lados dos obstáculos e confira os corredores com a área dos pés do jogador. Na arena atual, o retângulo dos pés mede 30 × 18 px. O salto e a esquiva continuam respeitando os bloqueios da fase.
 
 A banca do teste demonstra a separação. A instância de `game/player.tscn` permite ajustar velocidade, aceleração, salto e esquiva pelo Inspetor.
