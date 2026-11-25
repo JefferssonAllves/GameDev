@@ -43,7 +43,10 @@ func _physics_process(_delta: float) -> void:
 	if traveler.impulse_unlocked and not complete and center.distance_to(RELAY) < 35.0:
 		complete = true
 		checkpoint = Vector2(159, 310)
-		objective.text = "Estação religada  ·  O vento voltou a ligar as comunidades."
+		objective.text = "Estação religada  ·  E / LB junto ao relé abre a Casa das Comportas."
+
+	if complete and center.distance_to(RELAY) < 55.0 and Input.is_action_just_pressed("interact"):
+		get_tree().change_scene_to_file("res://raizes-do-brasil/gatehouse.tscn")
 
 
 func _process(delta: float) -> void:

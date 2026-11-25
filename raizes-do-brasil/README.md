@@ -7,11 +7,15 @@ Abra `project.godot` no Godot 4.7.2 e pressione **F5**. Pelo terminal, na raiz d
 | Mover | A / D | Analógico esquerdo |
 | Saltar | Espaço | Botão inferior |
 | Impulso no ar após obter a brasa | Shift | Botão direito |
+| Chutar | J | Botão esquerdo |
+| Interagir com o relé | E | Ombro esquerdo |
 | Voltar ao marco | R | Botão superior |
 
 Siga à direita até a brasa. Volte pelo terraço intermediário e use o impulso para alcançar o relé à esquerda. Segure o salto para ir mais alto.
 
-A demonstração é solo e usa arte geométrica provisória. O progresso dura a partida atual.
+Ao religar o relé, pressione **E** para abrir a Casa das Comportas. O Guardião lança ondas com aviso no chão e expõe o núcleo após cada sequência. Salte sobre as ondas e chute o núcleo aberto. Cada fase aumenta a quantidade e a velocidade das ondas. **R** reinicia o duelo.
+
+Este primeiro arco é solo e usa arte geométrica provisória. O progresso dura a partida atual.
 
 ## Teste automatizado
 

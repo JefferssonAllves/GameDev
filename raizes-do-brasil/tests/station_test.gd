@@ -60,8 +60,57 @@ func _run() -> void:
 	await _ticks(45)
 	Input.action_release("move_left")
 	_check(station.complete, "Alcançar o relé com a brasa conclui a estação")
-	print("Estação do Vento: %d falhas" % failures)
+	player.position = Vector2(159, 310)
+	Input.action_press("interact")
+	await scene_changed
+	Input.action_release("interact")
+	await _test_guardian()
+	print("Estação do Vento e Guardião: %d falhas" % failures)
 	quit(0 if failures == 0 else 1)
+
+
+func _test_guardian() -> void:
+	var room := current_scene
+	_check(room.scene_file_path.ends_with("/gatehouse.tscn"), "O relé abre a Casa das Comportas")
+	var player := room.get_node("Traveler") as CharacterBody2D
+	_check(player.impulse_unlocked, "O impulso é mantido na nova sala")
+	await _ticks(205)
+	_check(room.life == 3, "A primeira onda causa um único dano")
+	Input.action_press("restart")
+	await _ticks(3)
+	Input.action_release("restart")
+	_check(room.life == 4, "Reiniciar recupera a vida")
+	player.position = Vector2(652, 452)
+	player.facing = 1.0
+	await _kick()
+	_check(room.health == 9, "O núcleo fechado protege o Guardião")
+	for phase in range(1, 4):
+		for tick in range(680):
+			if room.state == room.State.EXPOSED:
+				Input.action_release("jump")
+				break
+			if room.state == room.State.WARNING and room.remaining <= 0.15 and player.is_on_floor():
+				Input.action_press("jump")
+			if room.state == room.State.SWEEP and room.remaining < 0.85:
+				Input.action_release("jump")
+			await physics_frame
+		_check(room.state == room.State.EXPOSED and room._phase() == phase, "O Guardião abre o núcleo em cada fase")
+		for hit in range(3):
+			await _kick()
+		_check(room.health == 9 - phase * 3, "Cada chute válido acerta uma vez")
+		if phase < 3:
+			for tick in range(250):
+				if room.state != room.State.EXPOSED:
+					break
+				await physics_frame
+	_check(room.state == room.State.WON, "O último golpe encerra o arco")
+
+
+func _kick() -> void:
+	Input.action_press("attack")
+	await _ticks(2)
+	Input.action_release("attack")
+	await _ticks(16)
 
 
 func _ticks(count: int) -> void:

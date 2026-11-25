@@ -334,3 +334,9 @@ O projeto principal da branch `teste`, com código em `raizes-do-brasil/`, concr
 O protótipo usa uma única área contínua. A ida pelo chão ensina a distância do pulo antes de entregar a Brasa do Vento. A volta pelos terraços recontextualiza o caminho. O jogador sobe pelo acesso à direita e usa o impulso aéreo para alcançar o relé no terraço da esquerda. A brasa cria um marco de retorno após quedas. Religado o relé, a resposta do cenário e o objetivo na tela confirmam o fim da demonstração.
 
 Para este recorte, medir se o salto curto e o salto longo são distinguíveis, se o impulso pode ser descoberto pelo cenário e se o retorno é compreensível após uma queda. Arte geométrica provisória produzida no próprio projeto. Após validar essa base, expandir para salas conectadas e prototipar combate e cooperação local conforme os marcos de produção.
+
+### Expansão do primeiro arco — Casa das Comportas
+
+O relé religado abre a Casa das Comportas. O Guardião da Seca protege o núcleo entre sequências de ondas. A leitura do aviso, o salto e a habilidade recém-aprendida ajudam a chegar ao núcleo no tempo de vulnerabilidade. Cada fase aumenta a quantidade e a velocidade das ondas. A derrota devolve água à vila e conclui o arco. Este recorte concentra o teste de plataforma e combate em duas cenas com um caminho completo até a vitória.
+
+A campanha completa ainda requer a vila navegável, mais áreas interconectadas, personagens, equipamentos, puzzles solo e cooperativos, salvamento e arte representativa. Coop local precede a validação online. O teste automatizado verifica transição de sala, dano, reinício, invulnerabilidade do núcleo, três fases e vitória.

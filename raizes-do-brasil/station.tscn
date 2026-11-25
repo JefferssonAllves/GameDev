@@ -1,24 +1,13 @@
 [gd_scene format=3]
 
 [ext_resource type="Script" path="res://raizes-do-brasil/station.gd" id="1"]
-[ext_resource type="Script" path="res://raizes-do-brasil/traveler.gd" id="2"]
-
-[sub_resource type="CapsuleShape2D" id="Body"]
-radius = 13.0
-height = 40.0
+[ext_resource type="PackedScene" path="res://raizes-do-brasil/traveler.tscn" id="2"]
 
 [node name="Station" type="Node2D"]
 script = ExtResource("1")
 
-[node name="Traveler" type="CharacterBody2D" parent="."]
+[node name="Traveler" parent="." instance=ExtResource("2")]
 position = Vector2(125, 452)
-collision_layer = 2
-collision_mask = 1
-script = ExtResource("2")
-
-[node name="Body" type="CollisionShape2D" parent="Traveler"]
-position = Vector2(0, -20)
-shape = SubResource("Body")
 
 [node name="Camera" type="Camera2D" parent="."]
 position = Vector2(480, 270)

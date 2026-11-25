@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+signal kick(foot: Vector2, direction: float)
+
 const SPEED := 230.0
 const GRAVITY := 1500.0
 const JUMP := 480.0
@@ -11,9 +13,17 @@ var _dash_left := 0.0
 var _coyote_time := 0.0
 var _jump_buffer := 0.0
 var _stride := 0.0
+var _kick_left := 0.0
 
 
 func _physics_process(delta: float) -> void:
+	if _kick_left > 0.0:
+		var previous := _kick_left
+		_kick_left = maxf(_kick_left - delta, 0.0)
+		if previous > 0.16 and _kick_left <= 0.16:
+			kick.emit(position, facing)
+	elif Input.is_action_just_pressed("attack"):
+		_kick_left = 0.25
 	var grounded := is_on_floor()
 	var direction := Input.get_axis("move_left", "move_right")
 	_coyote_time = 0.10 if grounded else maxf(0.0, _coyote_time - delta)
@@ -48,6 +58,7 @@ func return_to(checkpoint: Vector2) -> void:
 	position = checkpoint
 	velocity = Vector2.ZERO
 	_dash_left = 0.0
+	_kick_left = 0.0
 	_coyote_time = 0.0
 	_jump_buffer = 0.0
 	_impulse_available = false
@@ -61,7 +72,10 @@ func _draw() -> void:
 		for i in range(3):
 			draw_line(Vector2(-62 + i * 11, -30 + i * 8), Vector2(-20, -30 + i * 8), Color("#eeb669"), 2.0)
 	draw_line(Vector2(-6, -21), Vector2(-8 + step, -2), Color("#323c55"), 8.0, true)
-	draw_line(Vector2(7, -20), Vector2(7 - step, -2), Color("#323c55"), 8.0, true)
+	var leg_end := Vector2(42, -26) if _kick_left > 0.09 and _kick_left <= 0.16 else Vector2(7 - step, -2)
+	draw_line(Vector2(7, -20), leg_end, Color("#323c55"), 8.0, true)
+	if leg_end.x > 30:
+		draw_arc(Vector2(18, -27), 30, -0.35, 0.55, 12, Color("#ffd797"), 3.0, true)
 	draw_polygon(PackedVector2Array([Vector2(-8,-38), Vector2(9,-38), Vector2(15,-20), Vector2(-12,-20)]), PackedColorArray([Color("#c76243")]))
 	draw_line(Vector2(-6, -35), Vector2(-22, -28 + step * 0.5), Color("#e28e51"), 6.0, true)
 	draw_circle(Vector2(2, -46), 10.0, Color("#b46748"))
