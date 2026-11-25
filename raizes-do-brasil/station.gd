@@ -15,6 +15,7 @@ const RELAY_CHECKPOINT := Vector2(159, 310)
 var checkpoint := START
 var complete := false
 var _clock := 0.0
+var travelers: Array[CharacterBody2D]
 
 @onready var traveler = $Traveler
 @onready var camera: Camera2D = $Camera
@@ -22,6 +23,7 @@ var _clock := 0.0
 
 
 func _ready() -> void:
+	travelers = LocalCoop.travelers_in(self, traveler)
 	for rect: Rect2 in GROUND:
 		var body := StaticBody2D.new()
 		body.position = rect.get_center()
@@ -36,28 +38,42 @@ func _ready() -> void:
 		_unlock_ember()
 		if Campaign.milestone >= Campaign.Milestone.RELAY:
 			_restore_relay()
-		traveler.return_to(checkpoint)
+		for member in travelers:
+			member.return_to(checkpoint + Vector2(32 if member.second_player else 0, 0))
 
 
 func _physics_process(_delta: float) -> void:
-	if traveler.position.y > 640.0 or Input.is_action_just_pressed("restart"):
-		traveler.return_to(checkpoint)
-	traveler.position.x = clampf(traveler.position.x, 15.0, 1905.0)
-	var center: Vector2 = traveler.position - Vector2(0, 23)
-	if not traveler.impulse_unlocked and center.distance_to(EMBER) < 33.0:
-		_unlock_ember()
-		_save_milestone(Campaign.Milestone.EMBER)
-	if traveler.impulse_unlocked and not complete and center.distance_to(RELAY) < 35.0:
-		_restore_relay()
-		_save_milestone(Campaign.Milestone.RELAY)
+	var center_x := _group_center_x()
+	var nearby := 0
+	var enter_requested := false
+	for member in travelers:
+		if member.position.y > 640.0 or member.just_pressed(&"restart"):
+			member.return_to(checkpoint)
+		var left := maxf(15.0, center_x - 410.0) if LocalCoop.enabled else 15.0
+		var right := minf(1905.0, center_x + 410.0) if LocalCoop.enabled else 1905.0
+		member.position.x = clampf(member.position.x, left, right)
+		var center: Vector2 = member.position - Vector2(0, 23)
+		if not traveler.impulse_unlocked and center.distance_to(EMBER) < 33.0:
+			_unlock_ember()
+			_save_milestone(Campaign.Milestone.EMBER)
+		if traveler.impulse_unlocked and not complete and center.distance_to(RELAY) < 35.0:
+			_restore_relay()
+			_save_milestone(Campaign.Milestone.RELAY)
+		if center.distance_to(RELAY) < 75.0:
+			nearby += 1
+			enter_requested = enter_requested or member.just_pressed(&"interact")
 
-	if complete and center.distance_to(RELAY) < 55.0 and Input.is_action_just_pressed("interact"):
+	if complete and enter_requested:
+		if nearby < travelers.size():
+			objective.text = "Reúnam os dois viajantes junto ao relé."
+			return
 		_save_milestone(Campaign.Milestone.GUARDIAN)
 		get_tree().change_scene_to_file(Campaign.GATEHOUSE)
 
 
 func _unlock_ember() -> void:
-	traveler.impulse_unlocked = true
+	for member in travelers:
+		member.impulse_unlocked = true
 	checkpoint = EMBER_CHECKPOINT
 	objective.text = "Impulso aéreo liberado! Volte pelos terraços e cruze o vão com Shift no ar."
 
@@ -73,8 +89,14 @@ func _save_milestone(stage: int) -> void:
 		objective.text += "  ·  Falha ao salvar."
 
 
+func _group_center_x() -> float:
+	if travelers.size() == 1:
+		return traveler.position.x
+	return (travelers[0].position.x + travelers[1].position.x) * 0.5
+
+
 func _process(delta: float) -> void:
-	camera.position.x = traveler.position.x
+	camera.position.x = _group_center_x()
 	_clock += delta
 	queue_redraw()
 

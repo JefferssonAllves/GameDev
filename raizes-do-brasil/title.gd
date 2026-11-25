@@ -5,6 +5,7 @@ extends Control
 
 
 func _ready() -> void:
+	LocalCoop.configure(-1)
 	var saved := Campaign.saved_milestone()
 	resume_button.disabled = saved < 0
 	if resume_button.disabled:
@@ -20,7 +21,8 @@ func _resume() -> void:
 		hint.text = "Nenhum marco disponível."
 		%NewGame.grab_focus()
 		return
-	Campaign.begin(saved)
+	if _configure_players():
+		Campaign.begin(saved)
 
 
 func _new_game() -> void:
@@ -31,11 +33,25 @@ func _new_game() -> void:
 
 
 func _start() -> void:
+	if not _configure_players():
+		return
 	Campaign.active = true
 	if Campaign.record(Campaign.Milestone.START) != OK:
 		hint.text = "Não foi possível gravar a campanha."
 		return
 	Campaign.begin(Campaign.Milestone.START)
+
+
+func _configure_players() -> bool:
+	if not %Coop.button_pressed:
+		LocalCoop.configure(-1)
+		return true
+	var controllers := Input.get_connected_joypads()
+	if controllers.is_empty():
+		hint.text = "Conecte um controle para o jogador 2."
+		return false
+	LocalCoop.configure(controllers[0])
+	return true
 
 
 func _draw() -> void:

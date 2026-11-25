@@ -8,22 +8,32 @@ const MAX_HEALTH := 9
 const MAX_LIFE := 4
 
 var health := MAX_HEALTH
-var life := MAX_LIFE
+var life: int:
+	get:
+		return int(lives.get(traveler, MAX_LIFE))
+var travelers: Array[CharacterBody2D]
+var lives: Dictionary = {}
+var downed: Dictionary = {}
+var revive_progress: Dictionary = {}
 var state := State.WAIT
 var remaining := 1.3
-var hit_grace := 0.0
+var hit_grace: Dictionary = {}
 var wave_x := 0.0
 var wave_direction := -1.0
 var wave_count := 0
-var wave_hit := false
+var wave_hits: Dictionary = {}
 
 @onready var traveler = $Traveler
 @onready var status: Label = $Interface/Status
 
 
 func _ready() -> void:
-	traveler.impulse_unlocked = true
-	traveler.kick.connect(_on_kick)
+	travelers = LocalCoop.travelers_in(self, traveler)
+	for member in travelers:
+		member.impulse_unlocked = true
+		member.kick.connect(_on_kick)
+		lives[member] = MAX_LIFE
+		hit_grace[member] = 0.0
 	if Campaign.active and Campaign.milestone == Campaign.Milestone.VICTORY:
 		health = 0
 		state = State.WON
@@ -31,26 +41,37 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	traveler.position.x = clampf(traveler.position.x, 20.0, 940.0)
-	if state == State.WON:
-		if Input.is_action_just_pressed("interact"):
+	for member in travelers:
+		member.position.x = clampf(member.position.x, 20.0, 940.0)
+		if state == State.WON and member.just_pressed(&"interact"):
 			get_tree().change_scene_to_file(Campaign.MENU)
+			return
+		if state != State.WON and member.just_pressed(&"restart"):
+			_restart()
+			return
+		hit_grace[member] = maxf(0.0, float(hit_grace[member]) - delta)
+	if state == State.WON:
 		return
-	if Input.is_action_just_pressed("restart"):
-		_restart()
+	if _update_revives(delta):
 		return
-	hit_grace = maxf(0.0, hit_grace - delta)
 	remaining -= delta
 	if state == State.SWEEP:
 		wave_x += wave_direction * (560.0 + _phase() * 80.0) * delta
-		if not wave_hit and hit_grace <= 0.0 and absf(traveler.position.x - wave_x) < 26.0 and traveler.position.y > 424.0:
-			wave_hit = true
-			life -= 1
-			if life == 0:
-				_restart()
-				return
-			hit_grace = 0.75
-			_update_status()
+		for member in travelers:
+			if downed.has(member) or wave_hits.has(member) or hit_grace[member] > 0.0:
+				continue
+			if absf(member.position.x - wave_x) < 26.0 and member.position.y > 424.0:
+				wave_hits[member] = true
+				lives[member] -= 1
+				if lives[member] == 0:
+					downed[member] = 10.0
+					member.set_physics_process(false)
+					member.modulate.a = 0.45
+					if downed.size() == travelers.size():
+						_restart()
+						return
+				hit_grace[member] = 0.75
+				_update_status()
 	if remaining > 0.0:
 		return
 	match state:
@@ -59,7 +80,7 @@ func _physics_process(delta: float) -> void:
 			_warn()
 		State.WARNING:
 			wave_x = CORE.x
-			wave_hit = false
+			wave_hits.clear()
 			_enter(State.SWEEP, 1.15)
 		State.SWEEP:
 			wave_count -= 1
@@ -72,7 +93,10 @@ func _physics_process(delta: float) -> void:
 
 
 func _warn() -> void:
-	wave_direction = -1.0 if traveler.position.x <= CORE.x else 1.0
+	var target: CharacterBody2D = traveler
+	if downed.has(target):
+		target = travelers[1]
+	wave_direction = -1.0 if target.position.x <= CORE.x else 1.0
 	_enter(State.WARNING, 0.77 - 0.09 * _phase())
 
 
@@ -101,10 +125,38 @@ func _enter(next_state: State, duration: float) -> void:
 
 func _restart() -> void:
 	health = MAX_HEALTH
-	life = MAX_LIFE
-	hit_grace = 0.0
-	traveler.return_to(START)
+	downed.clear()
+	revive_progress.clear()
+	for member in travelers:
+		lives[member] = MAX_LIFE
+		hit_grace[member] = 0.0
+		member.modulate.a = 1.0
+		member.set_physics_process(true)
+		member.return_to(START + Vector2(32 if member.second_player else 0, 0))
 	_enter(State.WAIT, 1.3)
+
+
+func _update_revives(delta: float) -> bool:
+	for member in downed.keys():
+		var helper := travelers[0] if member == travelers[1] else travelers[1]
+		downed[member] -= delta
+		if downed[member] <= 0.0:
+			_restart()
+			return true
+		if helper.position.distance_to(member.position) > 68.0 or not helper.holding(&"interact"):
+			revive_progress[member] = 0.0
+			continue
+		revive_progress[member] = float(revive_progress.get(member, 0.0)) + delta
+		if revive_progress[member] >= 2.0:
+			downed.erase(member)
+			revive_progress.erase(member)
+			lives[member] = 2
+			hit_grace[member] = 0.75
+			member.modulate.a = 1.0
+			member.return_to(Vector2(member.position.x, START.y))
+			member.set_physics_process(true)
+			_update_status()
+	return false
 
 
 func _update_status() -> void:
@@ -113,7 +165,12 @@ func _update_status() -> void:
 		return
 	var hint: String = ["Aproxime-se do Guardião.", "Onda iminente. Prepare o salto!",
 		"Salte sobre a onda.", "Núcleo aberto. Aproxime-se e chute!"][state]
-	status.text = "Vida %d/%d   ·   Guardião %d/%d   ·   Fase %d   ·   %s" % [life, MAX_LIFE, health, MAX_HEALTH, _phase(), hint]
+	var life_status := "Vida %d/%d" % [life, MAX_LIFE]
+	if travelers.size() == 2:
+		life_status = "P1 %d/%d   ·   P2 %d/%d" % [life, MAX_LIFE, lives[travelers[1]], MAX_LIFE]
+		if not downed.is_empty():
+			hint = "Segure E / LB junto ao aliado para reanimá-lo."
+	status.text = "%s   ·   Guardião %d/%d   ·   Fase %d   ·   %s" % [life_status, health, MAX_HEALTH, _phase(), hint]
 
 
 func _process(_delta: float) -> void:

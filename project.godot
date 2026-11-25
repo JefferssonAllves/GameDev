@@ -7,6 +7,7 @@ config/features=PackedStringArray("4.7", "GL Compatibility")
 
 [autoload]
 Campaign="*res://raizes-do-brasil/campaign.gd"
+LocalCoop="*res://raizes-do-brasil/local_coop.gd"
 
 [display]
 window/size/viewport_width=960

@@ -342,3 +342,7 @@ O relé religado abre a Casa das Comportas. O Guardião da Seca protege o núcle
 A campanha completa ainda requer a vila navegável, mais áreas interconectadas, personagens, equipamentos, puzzles solo e cooperativos, salvamento e arte representativa. Coop local precede a validação online. O teste automatizado verifica transição de sala, dano, reinício, invulnerabilidade do núcleo, três fases e vitória.
 
 O menu da campanha oferece Novo jogo e Continuar. O primeiro arco salva marcos em `user://raizes-campaign.cfg` com versão de formato e gravação temporária. A brasa e o relé restauram o ponto de retorno correspondente. O duelo recomeça ao retomar a Casa das Comportas, e a vitória fica registrada.
+
+### Cooperativo local inicial
+
+O primeiro arco aceita dois jogadores na mesma máquina. O menu separa teclado e controle em dois conjuntos de ações. A câmera compartilhada limita a distância da dupla, o impulso é desbloqueado para ambos e a entrada na Casa das Comportas exige reunir o grupo no relé. O duelo tem vida individual e mantém o chute de cada jogador. O resgate exige proximidade e interação por dois segundos. O salvamento continua por marcos da campanha e o modo solo ou em dupla é escolhido no menu.
