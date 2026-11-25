@@ -10,7 +10,8 @@ Atualizado em 2026-11-19. Este índice manual complementa o Project Map; não é
 | `.project-map/project-map.md` | Mapa gerado dos arquivos suportados pelo Project Map. | Após validar o manifesto, para localizar código e relações indexados. |
 | `.project-map/project-map.manifest.json` | Hashes e cache do analisador. | Pelo script; não editar manualmente. |
 | `project.godot` | Configuração atual do projeto: cena principal, ações de entrada, camadas de colisão, renderizador Compatibility e plugin do editor. | Antes de alterar configuração ou diagnosticar compatibilidade; a versão declarada não comprova a versão do editor instalado. |
-| `raizes-do-brasil/project.godot` | Protótipo independente Raízes do Brasil com a Estação do Vento. | Para desenvolver ou testar o novo Metroidvania na branch `teste`. |
+| `raizes-do-brasil/` | Cenas, scripts e teste de Raízes do Brasil. | O `project.godot` da raiz abre a Estação do Vento. |
+| `brasil-em-retalho/project.godot` | Projeto anterior, com menu, HUD e arena. | Os caminhos do jogo anterior abaixo são relativos a `brasil-em-retalho/`. |
 | `game/arena.tscn`, `game/arena.gd` | Arena com fundo panorâmico, limites de colisão e câmera lateral com enquadramento vertical completo. | Montagem e teste de fases. |
 | `game/player.tscn`, `game/player.gd` | Personagem reutilizável, movimento no chão e colisão dos pés. | Alterações de movimento e apresentação. |
 | `game/enemy.tscn`, `game/enemy.gd` | NPC de patrulha e perseguição pelo piso navegável, animado com `sprites/aleatoria/inimigo.png`. | Ajustes de navegação, detecção e animações do inimigo. |
@@ -38,7 +39,7 @@ Atualizado em 2026-11-19. Este índice manual complementa o Project Map; não é
 
 ## Estado do jogo
 
-A cena principal é `game/menu.tscn`. A arte do menu está em `sprites/aleatoria/teste/Tela de jogo colorida GAMEDEV.png`. A arte mantém sua proporção na janela de 960 × 640. A área interativa sobre **Jogar** abre `game/arena.tscn`. O jogador e os obstáculos ficam sob `World`, com ordenação por Y. O movimento usa o chão em dois eixos e mantém a altura visual de salto separada da colisão. Consulte o guia da arena para controles e teste.
+No projeto Brasil em Retalho, a cena principal é `game/menu.tscn`. A arte do menu está em `sprites/aleatoria/teste/Tela de jogo colorida GAMEDEV.png`. A arte mantém sua proporção na janela de 960 × 640. A área interativa sobre **Jogar** abre `game/arena.tscn`. O jogador e os obstáculos ficam sob `World`, com ordenação por Y. O movimento usa o chão em dois eixos e mantém a altura visual de salto separada da colisão. Consulte o guia da arena para controles e teste.
 
 ## Limites de cobertura
 

@@ -8,7 +8,7 @@ func _initialize() -> void:
 
 
 func _run() -> void:
-	change_scene_to_file("res://station.tscn")
+	change_scene_to_file("res://raizes-do-brasil/station.tscn")
 	await scene_changed
 	var station := current_scene
 	var player := station.get_node("Traveler") as CharacterBody2D

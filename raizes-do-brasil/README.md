@@ -1,6 +1,6 @@
 # Raízes do Brasil · Estação do Vento
 
-Abra `raizes-do-brasil/project.godot` no Godot 4.7.2 e pressione **F5**. Pelo terminal, na raiz do repositório, execute `godot --path raizes-do-brasil`.
+Abra `project.godot` no Godot 4.7.2 e pressione **F5**. Pelo terminal, na raiz do repositório, execute `godot --path .`.
 
 | Ação | Teclado | Controle |
 | --- | --- | --- |
@@ -16,6 +16,6 @@ A demonstração é solo e usa arte geométrica provisória. O progresso dura a 
 ## Teste automatizado
 
 ```sh
-godot --headless --editor --path raizes-do-brasil --import
-godot --headless --path raizes-do-brasil --fixed-fps 60 -s res://tests/station_test.gd
+godot --headless --editor --path . --import
+godot --headless --path . --fixed-fps 60 -s res://raizes-do-brasil/tests/station_test.gd
 ```

@@ -329,7 +329,7 @@ Nome definitivo, narrativa final, identidade e nomes dos quatro protagonistas, m
 
 ## 23. Primeiro recorte jogável — Estação do Vento
 
-O projeto independente em `raizes-do-brasil/` concretiza o primeiro teste de movimentação. A estação foi isolada do projeto Brasil em Retalho para permitir mudanças na física e na direção visual sem interferir no jogo anterior.
+O projeto principal da branch `teste`, com código em `raizes-do-brasil/`, concretiza o primeiro teste de movimentação. A estação foi isolada do projeto Brasil em Retalho para permitir mudanças na física e na direção visual sem interferir no jogo anterior.
 
 O protótipo usa uma única área contínua. A ida pelo chão ensina a distância do pulo antes de entregar a Brasa do Vento. A volta pelos terraços recontextualiza o caminho. O jogador sobe pelo acesso à direita e usa o impulso aéreo para alcançar o relé no terraço da esquerda. A brasa cria um marco de retorno após quedas. Religado o relé, a resposta do cenário e o objetivo na tela confirmam o fim da demonstração.
 
