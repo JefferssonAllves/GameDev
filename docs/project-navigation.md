@@ -10,6 +10,7 @@ Atualizado em 2026-11-19. Este índice manual complementa o Project Map; não é
 | `.project-map/project-map.md` | Mapa gerado dos arquivos suportados pelo Project Map. | Após validar o manifesto, para localizar código e relações indexados. |
 | `.project-map/project-map.manifest.json` | Hashes e cache do analisador. | Pelo script; não editar manualmente. |
 | `project.godot` | Configuração atual do projeto: cena principal, ações de entrada, camadas de colisão, renderizador Compatibility e plugin do editor. | Antes de alterar configuração ou diagnosticar compatibilidade; a versão declarada não comprova a versão do editor instalado. |
+| `raizes-do-brasil/project.godot` | Protótipo independente Raízes do Brasil com a Estação do Vento. | Para desenvolver ou testar o novo Metroidvania na branch `teste`. |
 | `game/arena.tscn`, `game/arena.gd` | Arena com fundo panorâmico, limites de colisão e câmera lateral com enquadramento vertical completo. | Montagem e teste de fases. |
 | `game/player.tscn`, `game/player.gd` | Personagem reutilizável, movimento no chão e colisão dos pés. | Alterações de movimento e apresentação. |
 | `game/enemy.tscn`, `game/enemy.gd` | NPC de patrulha e perseguição pelo piso navegável, animado com `sprites/aleatoria/inimigo.png`. | Ajustes de navegação, detecção e animações do inimigo. |
