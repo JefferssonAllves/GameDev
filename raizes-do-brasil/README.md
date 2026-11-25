@@ -1,6 +1,6 @@
 # Raízes do Brasil · Estação do Vento
 
-Abra `project.godot` no Godot 4.7.2 e pressione **F5**. Pelo terminal, na raiz do repositório, execute `godot --path .`.
+Abra `project.godot` no Godot 4.7.2 e pressione **F5** para abrir o menu. Pelo terminal, na raiz do repositório, execute `godot --path .`.
 
 | Ação | Teclado | Controle |
 | --- | --- | --- |
@@ -15,7 +15,7 @@ Siga à direita até a brasa. Volte pelo terraço intermediário e use o impulso
 
 Ao religar o relé, pressione **E** para abrir a Casa das Comportas. O Guardião lança ondas com aviso no chão e expõe o núcleo após cada sequência. Salte sobre as ondas e chute o núcleo aberto. Cada fase aumenta a quantidade e a velocidade das ondas. **R** reinicia o duelo.
 
-Este primeiro arco é solo e usa arte geométrica provisória. O progresso dura a partida atual.
+Este primeiro arco é solo e usa arte geométrica provisória. O menu oferece **Novo jogo** e **Continuar**. O progresso é salvo ao obter a brasa, religar o relé, entrar na Casa das Comportas e derrotar o Guardião. Continuar antes da vitória na Casa das Comportas reinicia o duelo.
 
 ## Teste automatizado
 

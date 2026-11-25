@@ -340,3 +340,5 @@ Para este recorte, medir se o salto curto e o salto longo são distinguíveis, s
 O relé religado abre a Casa das Comportas. O Guardião da Seca protege o núcleo entre sequências de ondas. A leitura do aviso, o salto e a habilidade recém-aprendida ajudam a chegar ao núcleo no tempo de vulnerabilidade. Cada fase aumenta a quantidade e a velocidade das ondas. A derrota devolve água à vila e conclui o arco. Este recorte concentra o teste de plataforma e combate em duas cenas com um caminho completo até a vitória.
 
 A campanha completa ainda requer a vila navegável, mais áreas interconectadas, personagens, equipamentos, puzzles solo e cooperativos, salvamento e arte representativa. Coop local precede a validação online. O teste automatizado verifica transição de sala, dano, reinício, invulnerabilidade do núcleo, três fases e vitória.
+
+O menu da campanha oferece Novo jogo e Continuar. O primeiro arco salva marcos em `user://raizes-campaign.cfg` com versão de formato e gravação temporária. A brasa e o relé restauram o ponto de retorno correspondente. O duelo recomeça ao retomar a Casa das Comportas, e a vitória fica registrada.

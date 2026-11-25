@@ -2,8 +2,11 @@ config_version=5
 
 [application]
 config/name="Raízes do Brasil"
-run/main_scene="res://raizes-do-brasil/station.tscn"
+run/main_scene="res://raizes-do-brasil/title.tscn"
 config/features=PackedStringArray("4.7", "GL Compatibility")
+
+[autoload]
+Campaign="*res://raizes-do-brasil/campaign.gd"
 
 [display]
 window/size/viewport_width=960

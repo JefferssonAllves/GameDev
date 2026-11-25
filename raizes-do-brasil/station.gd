@@ -9,6 +9,9 @@ const EMBER := Vector2(1472, 311)
 const RELAY := Vector2(159, 273)
 const START := Vector2(125, 452)
 
+const EMBER_CHECKPOINT := Vector2(1472, 344)
+const RELAY_CHECKPOINT := Vector2(159, 310)
+
 var checkpoint := START
 var complete := false
 var _clock := 0.0
@@ -29,6 +32,11 @@ func _ready() -> void:
 		body.add_child(collider)
 		add_child(body)
 	objective.text = "Estação do Vento  ·  Siga os marcos dourados até a brasa."
+	if Campaign.active and Campaign.milestone >= Campaign.Milestone.EMBER:
+		_unlock_ember()
+		if Campaign.milestone >= Campaign.Milestone.RELAY:
+			_restore_relay()
+		traveler.return_to(checkpoint)
 
 
 func _physics_process(_delta: float) -> void:
@@ -37,16 +45,32 @@ func _physics_process(_delta: float) -> void:
 	traveler.position.x = clampf(traveler.position.x, 15.0, 1905.0)
 	var center: Vector2 = traveler.position - Vector2(0, 23)
 	if not traveler.impulse_unlocked and center.distance_to(EMBER) < 33.0:
-		traveler.impulse_unlocked = true
-		checkpoint = Vector2(1472, 344)
-		objective.text = "Impulso aéreo liberado! Volte pelos terraços e cruze o vão com Shift no ar."
+		_unlock_ember()
+		_save_milestone(Campaign.Milestone.EMBER)
 	if traveler.impulse_unlocked and not complete and center.distance_to(RELAY) < 35.0:
-		complete = true
-		checkpoint = Vector2(159, 310)
-		objective.text = "Estação religada  ·  E / LB junto ao relé abre a Casa das Comportas."
+		_restore_relay()
+		_save_milestone(Campaign.Milestone.RELAY)
 
 	if complete and center.distance_to(RELAY) < 55.0 and Input.is_action_just_pressed("interact"):
-		get_tree().change_scene_to_file("res://raizes-do-brasil/gatehouse.tscn")
+		_save_milestone(Campaign.Milestone.GUARDIAN)
+		get_tree().change_scene_to_file(Campaign.GATEHOUSE)
+
+
+func _unlock_ember() -> void:
+	traveler.impulse_unlocked = true
+	checkpoint = EMBER_CHECKPOINT
+	objective.text = "Impulso aéreo liberado! Volte pelos terraços e cruze o vão com Shift no ar."
+
+
+func _restore_relay() -> void:
+	complete = true
+	checkpoint = RELAY_CHECKPOINT
+	objective.text = "Estação religada  ·  E / LB junto ao relé abre a Casa das Comportas."
+
+
+func _save_milestone(stage: int) -> void:
+	if Campaign.record(stage) != OK:
+		objective.text += "  ·  Falha ao salvar."
 
 
 func _process(delta: float) -> void:

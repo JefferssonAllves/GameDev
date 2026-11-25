@@ -24,6 +24,9 @@ var wave_hit := false
 func _ready() -> void:
 	traveler.impulse_unlocked = true
 	traveler.kick.connect(_on_kick)
+	if Campaign.active and Campaign.milestone == Campaign.Milestone.VICTORY:
+		health = 0
+		state = State.WON
 	_update_status()
 
 
@@ -31,7 +34,7 @@ func _physics_process(delta: float) -> void:
 	traveler.position.x = clampf(traveler.position.x, 20.0, 940.0)
 	if state == State.WON:
 		if Input.is_action_just_pressed("interact"):
-			get_tree().change_scene_to_file("res://raizes-do-brasil/station.tscn")
+			get_tree().change_scene_to_file(Campaign.MENU)
 		return
 	if Input.is_action_just_pressed("restart"):
 		_restart()
@@ -84,6 +87,8 @@ func _on_kick(foot: Vector2, direction: float) -> void:
 	health -= 1
 	if health == 0:
 		_enter(State.WON, 0.0)
+		if Campaign.record(Campaign.Milestone.VICTORY) != OK:
+			status.text += "  ·  Falha ao salvar."
 	else:
 		_update_status()
 
@@ -104,7 +109,7 @@ func _restart() -> void:
 
 func _update_status() -> void:
 	if state == State.WON:
-		status.text = "A água voltou à vila.  ·  Arco concluído.  ·  E / LB para recomeçar."
+		status.text = "A água voltou à vila.  ·  Arco concluído.  ·  E / LB para voltar ao menu."
 		return
 	var hint: String = ["Aproxime-se do Guardião.", "Onda iminente. Prepare o salto!",
 		"Salte sobre a onda.", "Núcleo aberto. Aproxime-se e chute!"][state]
